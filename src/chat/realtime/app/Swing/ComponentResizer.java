@@ -1,5 +1,5 @@
 
-package Swing;
+package chat.realtime.app.Swing;
 
 import java.awt.*;
 import java.awt.event.*;

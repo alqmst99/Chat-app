@@ -2,12 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Main;
+package chat.realtime.app.Main;
 
-import Swing.ComponentResizer;
+import chat.realtime.app.Swing.ComponentResizer;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 
 /**
  *
@@ -26,9 +27,12 @@ public class Main extends javax.swing.JFrame {
     }
     
     
-    //Inizializer component 
+    //Inizializer component redenrizable in the frame
     private void init(){
-          setIconImage(new ImageIcon(getClass().getResource("/src/Icon/icon.png")).getImage());
+        //add icon image in the executable
+          setIconImage(new ImageIcon(getClass().getResource("/chat/realtime/app/Icon/icon.png")).getImage());
+          
+          //config resize window
            ComponentResizer cr= new ComponentResizer();
            cr.registerComponent(this);
            cr.setMinimumSize(new Dimension(800, 500));
@@ -54,6 +58,10 @@ public class Main extends javax.swing.JFrame {
         Border = new javax.swing.JPanel();
         Background = new javax.swing.JPanel();
         Title = new javax.swing.JPanel();
+        btnMinimeze = new javax.swing.JButton();
+        btnClose = new javax.swing.JButton();
+        Body = new javax.swing.JLayeredPane();
+        home2 = new chat.realtime.app.Component.Form.Home();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -63,7 +71,6 @@ public class Main extends javax.swing.JFrame {
         Background.setBackground(new java.awt.Color(255, 255, 255));
 
         Title.setBackground(new java.awt.Color(229, 229, 229));
-        Title.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         Title.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 TitleMouseDragged(evt);
@@ -75,29 +82,57 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        btnMinimeze.setIcon(new javax.swing.ImageIcon(getClass().getResource("/chat/realtime/app/Icon/minimize.png"))); // NOI18N
+        btnMinimeze.setBorder(null);
+        btnMinimeze.setContentAreaFilled(false);
+        btnMinimeze.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMinimeze.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMinimezeActionPerformed(evt);
+            }
+        });
+
+        btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/chat/realtime/app/Icon/close.png"))); // NOI18N
+        btnClose.setBorder(null);
+        btnClose.setContentAreaFilled(false);
+        btnClose.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCloseActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout TitleLayout = new javax.swing.GroupLayout(Title);
         Title.setLayout(TitleLayout);
         TitleLayout.setHorizontalGroup(
             TitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1106, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TitleLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnMinimeze, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         TitleLayout.setVerticalGroup(
             TitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 25, Short.MAX_VALUE)
+            .addComponent(btnClose, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+            .addComponent(btnMinimeze, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        Body.setLayout(new java.awt.BorderLayout());
 
         javax.swing.GroupLayout BackgroundLayout = new javax.swing.GroupLayout(Background);
         Background.setLayout(BackgroundLayout);
         BackgroundLayout.setHorizontalGroup(
             BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(Title, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Body, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         BackgroundLayout.setVerticalGroup(
             BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BackgroundLayout.createSequentialGroup()
-                .addGap(0, 0, 0)
                 .addComponent(Title, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(576, 576, 576))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Body, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout BorderLayout = new javax.swing.GroupLayout(Border);
@@ -106,7 +141,9 @@ public class Main extends javax.swing.JFrame {
             BorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BorderLayout.createSequentialGroup()
                 .addGap(1, 1, 1)
-                .addComponent(Background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(BorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(home2, javax.swing.GroupLayout.DEFAULT_SIZE, 1162, Short.MAX_VALUE)
+                    .addComponent(Background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(1, 1, 1))
         );
         BorderLayout.setVerticalGroup(
@@ -114,7 +151,9 @@ public class Main extends javax.swing.JFrame {
             .addGroup(BorderLayout.createSequentialGroup()
                 .addGap(1, 1, 1)
                 .addComponent(Background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(1, 1, 1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(home2, javax.swing.GroupLayout.PREFERRED_SIZE, 635, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -144,6 +183,14 @@ public class Main extends javax.swing.JFrame {
      pX= evt.getX();
      pY= evt.getY();
     }//GEN-LAST:event_TitleMousePressed
+
+    private void btnMinimezeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimezeActionPerformed
+        this.setState(JFrame.ICONIFIED);
+    }//GEN-LAST:event_btnMinimezeActionPerformed
+
+    private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
+       System.exit(0);
+    }//GEN-LAST:event_btnCloseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -182,7 +229,11 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Background;
+    private javax.swing.JLayeredPane Body;
     private javax.swing.JPanel Border;
     private javax.swing.JPanel Title;
+    private javax.swing.JButton btnClose;
+    private javax.swing.JButton btnMinimeze;
+    private chat.realtime.app.Component.Form.Home home2;
     // End of variables declaration//GEN-END:variables
 }
