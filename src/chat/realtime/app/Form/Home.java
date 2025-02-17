@@ -2,21 +2,32 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package chat.realtime.app.Component.Form;
+package chat.realtime.app.Form;
+
+
 
 /**
  *
  * @author Nahue
  */
-public class Chat extends javax.swing.JPanel {
+import net.miginfocom.swing.MigLayout;
+public class Home extends javax.swing.JLayeredPane {
 
     /**
-     * Creates new form Chat
+     * Creates new form Home
      */
-    public Chat() {
+    public Home() {
         initComponents();
+        init();
     }
 
+    
+    private void init(){
+        setLayout(new MigLayout("debug, fillx, filly", "0[200]5[fill, 100%]5[200!]0","0[fill]0"));
+        this.add(new Menu_left());
+        this.add(new Chat());
+        this.add(new Menu_Rigth());
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,34 +37,19 @@ public class Chat extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-
-        setBackground(new java.awt.Color(189, 194, 204));
-        setForeground(new java.awt.Color(0, 0, 0));
-
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Chat");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addComponent(jLabel1)
-                .addContainerGap(184, Short.MAX_VALUE))
+            .addGap(0, 597, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(125, 125, 125)
-                .addComponent(jLabel1)
-                .addContainerGap(481, Short.MAX_VALUE))
+            .addGap(0, 493, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

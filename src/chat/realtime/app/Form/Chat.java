@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package chat.realtime.app.Component.Form;
+package chat.realtime.app.Form;
 
 /**
  *
  * @author Nahue
  */
-public class Menu_left extends javax.swing.JPanel {
+public class Chat extends javax.swing.JPanel {
 
     /**
-     * Creates new form Menu_left
+     * Creates new form Chat
      */
-    public Menu_left() {
+    public Chat() {
         initComponents();
     }
 
@@ -28,26 +28,28 @@ public class Menu_left extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(229, 229, 229));
+        setBackground(new java.awt.Color(189, 194, 204));
+        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Menu Right Note");
+        jLabel1.setText("Chat");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addGap(56, 56, 56)
+                .addComponent(jLabel1)
+                .addContainerGap(182, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(131, 131, 131)
+                .addGap(125, 125, 125)
                 .addComponent(jLabel1)
-                .addContainerGap(475, Short.MAX_VALUE))
+                .addContainerGap(479, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

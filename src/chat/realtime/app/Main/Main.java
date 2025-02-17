@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 
 /**
  *
- * @author Nahue
+ * @author Nahuel N Pierni
  */
 public class Main extends javax.swing.JFrame {
 
@@ -61,7 +61,7 @@ public class Main extends javax.swing.JFrame {
         btnMinimeze = new javax.swing.JButton();
         btnClose = new javax.swing.JButton();
         Body = new javax.swing.JLayeredPane();
-        home2 = new chat.realtime.app.Component.Form.Home();
+        home2 = new chat.realtime.app.Form.Home();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -107,7 +107,7 @@ public class Main extends javax.swing.JFrame {
         TitleLayout.setHorizontalGroup(
             TitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TitleLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(1107, Short.MAX_VALUE)
                 .addComponent(btnMinimeze, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -142,7 +142,7 @@ public class Main extends javax.swing.JFrame {
             .addGroup(BorderLayout.createSequentialGroup()
                 .addGap(1, 1, 1)
                 .addGroup(BorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(home2, javax.swing.GroupLayout.DEFAULT_SIZE, 1162, Short.MAX_VALUE)
+                    .addComponent(home2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(Background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(1, 1, 1))
         );
@@ -152,8 +152,7 @@ public class Main extends javax.swing.JFrame {
                 .addGap(1, 1, 1)
                 .addComponent(Background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(home2, javax.swing.GroupLayout.PREFERRED_SIZE, 635, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(home2, javax.swing.GroupLayout.PREFERRED_SIZE, 655, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -234,6 +233,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel Title;
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnMinimeze;
-    private chat.realtime.app.Component.Form.Home home2;
+    private chat.realtime.app.Form.Home home2;
     // End of variables declaration//GEN-END:variables
 }
