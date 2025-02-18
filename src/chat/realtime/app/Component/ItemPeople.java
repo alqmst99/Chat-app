@@ -1,6 +1,11 @@
 
 package chat.realtime.app.Component;
 
+import java.awt.Color;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
 /**
  *
  * @author Nahue
@@ -13,11 +18,25 @@ public class ItemPeople extends javax.swing.JPanel {
     public ItemPeople(String name) {
         initComponents();
         lbName.setText(name);
+        init();
     }
 
     
     
-    
+    private void init(){
+        //mouse over a people component effect, change background color when hover mouse in the component Swing
+        addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseEntered(MouseEvent me){
+                setBackground(new Color(230,230,230));
+            }
+            
+            @Override
+            public void mouseExited(MouseEvent me){
+                setBackground(new Color(242,242,242));
+            }
+        });
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -43,13 +62,16 @@ public class ItemPeople extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(imageAvatar1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
-                .addComponent(lbName, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addComponent(lbName, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(imageAvatar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(lbName, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(2, 2, 2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(imageAvatar1, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+                    .addComponent(lbName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 

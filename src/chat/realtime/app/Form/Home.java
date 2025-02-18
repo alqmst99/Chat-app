@@ -1,16 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package chat.realtime.app.Form;
-
-
 
 /**
  *
  * @author Nahue
  */
 import net.miginfocom.swing.MigLayout;
+
 public class Home extends javax.swing.JLayeredPane {
 
     /**
@@ -21,13 +16,13 @@ public class Home extends javax.swing.JLayeredPane {
         init();
     }
 
-    
-    private void init(){
-        setLayout(new MigLayout("debug, fillx, filly", "0[200]5[fill, 100%]5[200!]0","0[fill]0"));
+    private void init() {
+        setLayout(new MigLayout("debug, fillx, filly", "0[200]5[fill, 100%]5[200!]0", "0[fill]0"));
         this.add(new Menu_left());
         this.add(new Chat());
         this.add(new Menu_Rigth());
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
