@@ -45,7 +45,7 @@ public class ItemPeople extends javax.swing.JPanel {
         imageAvatar1 = new chat.realtime.app.Swing.ImageAvatar();
         lbName = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(229, 229, 229));
+        setBackground(new java.awt.Color(242, 242, 242));
         setPreferredSize(new java.awt.Dimension(200, 50));
 
         imageAvatar1.setBorderSize(0);

@@ -1,15 +1,18 @@
 
 package chat.realtime.app;
 
+import chat.realtime.app.Main.Main;
+
 /**
  *
  * @author Nahuel N. Pierini
  */
 public class ChatRealtimeApp {
-
+ 
    
     public static void main(String[] args) {
-        // TODO code application logic here
+  //inicialize frame principal
+     Main.main(args);
     }
     
 }
