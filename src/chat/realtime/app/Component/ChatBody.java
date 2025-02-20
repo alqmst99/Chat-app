@@ -1,6 +1,6 @@
-
 package chat.realtime.app.Component;
 
+import chat.realtime.app.Swing.ScrollBar;
 import java.awt.Color;
 import javax.swing.JScrollBar;
 import net.miginfocom.swing.MigLayout;
@@ -17,38 +17,49 @@ public class ChatBody extends javax.swing.JPanel {
     public ChatBody() {
         initComponents();
         init();
-        addItemLeft("A JTextArea is a multi-line text component to display text CaretListener interface when we are trying to implement the functionality of the JTextArea component.");
-            addItemRight("jajaja puto el que lee ");
+        addItemLeft("A JTextArea is a multi-line text component to display text CaretListener interface when we are trying to implement the functionality of the JTextArea component.", "pepito");
+        addItemRight("jajaja puto el que lee ");
+        addDate("25/12/1800");
+         addItemLeft("A JTextArea is a  to implement the functionality of the JTextArea component.", "pepito");
+        addItemRight("A JTextArea is a multi-line text component to display text CaretListener interface when we are trying to implement the functionality of the JTextArea component. ");
+        addDate("1/1/1900");
+         addItemLeft("trying to implement the functionality of the JTextArea component.", "pepito");
+        addItemRight("jajaja puto el que lee ");
 
     }
 
-
-    private void init(){
+    private void init() {
         Body.setLayout(new MigLayout("fillx"));
-        sp.setVerticalScrollBar(new JScrollBar());
+        sp.setVerticalScrollBar(new ScrollBar());
         sp.getVerticalScrollBar().setBackground(Color.WHITE);
     }
-    
-    
+
     //add message text field 
-    public void addItemLeft(String text){
-        ChatLeft item= new ChatLeft();
+    public void addItemLeft(String text, String user) {
+        ChatLeftWhitProfile item = new ChatLeftWhitProfile();
         item.setText(text);
-        
-        Body.add(item,"wrap, al left, w 80%, h :: 100%");
+        item.setUserProfile(user);
+        Body.add(item, "wrap, al left, w 80%, h ::100%");
+        Body.repaint();
+        Body.revalidate();
+    }
+
+    public void addItemRight(String text) {
+        ChatRight item = new ChatRight();
+        item.setText(text);
+
+        Body.add(item, "wrap, al right, w ::80%");
         Body.repaint();
         Body.revalidate();
     }
     
-     public void addItemRight(String text){
-        ChatRight item= new ChatRight();
-        item.setText(text);
-        
-        Body.add(item,"wrap, al right, w ::80%");
+    public void addDate(String date){
+        ChatDate item= new ChatDate();
+        item.setDate(date);
+        Body.add(item, "wrap,al center ");
         Body.repaint();
         Body.revalidate();
     }
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

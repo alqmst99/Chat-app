@@ -1,14 +1,15 @@
 package chat.realtime.app.Component;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Label;
 import java.awt.RenderingHints;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.border.EmptyBorder;
@@ -22,6 +23,9 @@ public class ChatItem extends javax.swing.JLayeredPane {
     /**
      * Creates new form ChatItem
      */
+    
+     private JLabel label;
+     //private  button;
     public ChatItem() {
         initComponents();
         txt.setEditable(false);
@@ -30,7 +34,23 @@ public class ChatItem extends javax.swing.JLayeredPane {
 
     }
 
-    private JLabel label;
+   public void setUserProfile(String user){
+            JLayeredPane layer = new JLayeredPane();
+        layer.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
+        layer.setBorder(new EmptyBorder(10, 10, 0, 10));
+       JButton button = new JButton(user);
+       button.setCursor(new Cursor(Cursor.HAND_CURSOR) {
+       });
+        button.setBorder(null);
+        button.setContentAreaFilled(false);
+        button.setFocusable(false);
+        button.setForeground(new Color(30,121,213));
+        button.setFont(new java.awt.Font("sansserif", 1, 13));
+        txt.setBorder(javax.swing.BorderFactory.createEmptyBorder(10,10,5,10));//border factory 
+        layer.add(button);
+        add(layer, 0);
+    }
+
 
     public void setTxt(String text) {
         txt.setText(text);
