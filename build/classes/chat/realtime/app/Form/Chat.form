@@ -29,15 +29,15 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="chatTitle" max="32767" attributes="0"/>
           <Component id="chatBottom" alignment="0" max="32767" attributes="0"/>
           <Component id="chatBody" alignment="0" pref="723" max="32767" attributes="0"/>
+          <Component id="chatTitle1" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="chatTitle" min="-2" max="-2" attributes="0"/>
+              <Component id="chatTitle1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
               <Component id="chatBody" pref="524" max="32767" attributes="0"/>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
@@ -47,21 +47,6 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="chat.realtime.app.Component.ChatTitle" name="chatTitle">
-
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="39" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-      </Layout>
-    </Container>
     <Container class="chat.realtime.app.Component.ChatBottom" name="chatBottom">
 
       <Layout>
@@ -78,6 +63,8 @@
       </Layout>
     </Container>
     <Component class="chat.realtime.app.Component.ChatBody" name="chatBody">
+    </Component>
+    <Component class="chat.realtime.app.Component.ChatTitle" name="chatTitle1">
     </Component>
   </SubComponents>
 </Form>
