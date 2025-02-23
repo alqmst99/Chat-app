@@ -8,6 +8,7 @@ import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -80,6 +81,22 @@ public class ChatItem extends javax.swing.JLayeredPane {
              label.setIcon(new ImageIcon(getClass().getResource("/chat/realtime/app/Icon/double_tick.png")));
          }
     }
+      
+      public void setImage(boolean right, Icon ...image){
+          JLayeredPane layer= new JLayeredPane();
+          layer.setLayout(new FlowLayout(right ? FlowLayout.RIGHT : FlowLayout.LEFT));
+          layer.setBorder(new EmptyBorder(0,5,5,5));
+          ChatImage chatImage= new ChatImage(right);
+          chatImage.addImage(image);
+          layer.add(chatImage);
+          add(layer);
+          
+      }
+      
+      public void hideText(){
+          txt.setVisible(false);
+          
+      }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

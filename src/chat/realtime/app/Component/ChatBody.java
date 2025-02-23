@@ -2,6 +2,8 @@ package chat.realtime.app.Component;
 
 import chat.realtime.app.Swing.ScrollBar;
 import java.awt.Color;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JScrollBar;
 import net.miginfocom.swing.MigLayout;
 
@@ -23,9 +25,11 @@ public class ChatBody extends javax.swing.JPanel {
          addItemLeft("A JTextArea is a  to implement the functionality of the JTextArea component.", "pepito");
         addItemRight("A JTextArea is a multi-line text component to display text CaretListener interface when we are trying to implement the functionality of the JTextArea component. ");
         addDate("1/1/1900");
-         addItemLeft("trying to implement the functionality of the JTextArea component.", "pepito");
+         addItemLeft("trying to implement the functionality of the JTextArea component.", "pepito", new ImageIcon(getClass().getResource("/chat/realtime/app/Icon/testing/dog.jpg")), new ImageIcon(getClass().getResource("/chat/realtime/app/Icon/testing/pic.jpg")));
         addItemRight("jajaja puto el que lee ");
-
+        addDate("Today");
+         addItemLeft("", "Ro", new ImageIcon(getClass().getResource("/chat/realtime/app/Icon/testing/pic.jpg")));
+addItemRight("jajaja puto el que lee ",new ImageIcon(getClass().getResource("/chat/realtime/app/Icon/testing/pic.jpg")));
     }
 
     private void init() {
@@ -35,20 +39,23 @@ public class ChatBody extends javax.swing.JPanel {
     }
 
     //add message text field 
-    public void addItemLeft(String text, String user) {
+    public void addItemLeft(String text, String user, Icon ...image) {
         ChatLeftWhitProfile item = new ChatLeftWhitProfile();
         item.setText(text);
+        item.setImage(image);
+        item.setTime();
         item.setUserProfile(user);
-        Body.add(item, "wrap, al left, w 80%, h ::100%");
+        Body.add(item, "wrap, al left, w 100::80%");//w 100:80% ajust size in the content 
         Body.repaint();
         Body.revalidate();
     }
 
-    public void addItemRight(String text) {
+    public void addItemRight(String text, Icon ...image) {
         ChatRight item = new ChatRight();
         item.setText(text);
+        item.setImage(image);
 
-        Body.add(item, "wrap, al right, w ::80%");
+        Body.add(item, "wrap, al right, w 100::80%");
         Body.repaint();
         Body.revalidate();
     }

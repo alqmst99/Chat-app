@@ -2,6 +2,7 @@
 package chat.realtime.app.Component;
 
 import java.awt.Color;
+import javax.swing.Icon;
 
 /**
  *
@@ -17,10 +18,22 @@ public class ChatLeft extends javax.swing.JLayeredPane {
         txt.setBackground(new Color(200,200,200));
     }
 
+      
    public void setText(String text){
-       txt.setTxt(text);
-       txt.setTime("10:30 PM"); //testing time
-       txt.seen();
+      if(text.equals("")){
+          txt.hideText();
+      }else{
+          txt.setTxt(text);
+      }
+   }
+   
+ 
+   public void setImage(Icon ...image){
+       txt.setImage(false, image);
+   }
+   
+   public void setTime(){
+       txt.setTime("18:00 PM");
    }
    
    

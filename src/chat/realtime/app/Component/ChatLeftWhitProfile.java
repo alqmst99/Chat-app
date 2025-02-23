@@ -2,6 +2,7 @@
 package chat.realtime.app.Component;
 
 import java.awt.Color;
+import java.util.Date;
 import javax.swing.Icon;
 
 /**
@@ -28,12 +29,21 @@ public class ChatLeftWhitProfile extends javax.swing.JLayeredPane {
       }
     
    public void setText(String text){
-       txt.setTxt(text);
-       txt.setTime("10:30 PM"); //testing time
-       txt.seen();
+      if(text.equals("")){
+          txt.hideText();
+      }else{
+          txt.setTxt(text);
+      }
    }
    
  
+   public void setImage(Icon ...image){
+       txt.setImage(false, image);
+   }
+   
+   public void setTime(){
+       txt.setTime("18:00 PM");
+   }
    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
