@@ -1,4 +1,3 @@
-
 package chat.realtime.app.Swing;
 
 import java.awt.Dimension;
@@ -17,8 +16,7 @@ import javax.swing.JLayeredPane;
  * @author Nahuel Pierini
  * @Enterprise: FSTailSolution
  */
-public class PictureBox  extends JLayeredPane
-{
+public class PictureBox extends JLayeredPane {
 
     public Icon getImage() {
         return image;
@@ -28,23 +26,26 @@ public class PictureBox  extends JLayeredPane
         this.image = image;
     }
     private Icon image;
-    
-    
+
     @Override
     protected void paintComponent(Graphics g) {
-        Graphics2D g2= (Graphics2D)  g;
+        Graphics2D g2 = (Graphics2D) g;
         Rectangle size = getAutoSize(image);
         g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-            g2.drawImage(toImage(image), size.getLocation().x, size.getLocation().y, size.getSize().width, size.getSize().height, null);
-            
-        
-        super.paintComponent(g); 
+        g2.drawImage(toImage(image), size.getLocation().x, size.getLocation().y, size.getSize().width, size.getSize().height, null);
+
+        super.paintComponent(g);
     }
-    
-    
-        private Rectangle getAutoSize(Icon image) {
+
+    private Rectangle getAutoSize(Icon image) {
         int w = getWidth();
-        int h = getHeight(); 
+        int h = getHeight();
+        if(w> image.getIconWidth()){
+            w= image.getIconWidth();
+        }
+        if(h> image.getIconHeight()){
+            h=image.getIconHeight();
+        }
         int iw = image.getIconWidth();
         int ih = image.getIconHeight();
         double xScale = (double) w / iw;
@@ -52,8 +53,8 @@ public class PictureBox  extends JLayeredPane
         double scale = Math.max(xScale, yScale);
         int width = (int) (scale * iw);
         int height = (int) (scale * ih);
-        int x = (w - width) / 2;
-        int y = (h - height) / 2;
+        int x = getWidth()/2-(width/2);
+        int y = getHeight()/2 -(height/2);
         return new Rectangle(new Point(x, y), new Dimension(width, height));
     }
 
@@ -61,7 +62,4 @@ public class PictureBox  extends JLayeredPane
         return ((ImageIcon) icon).getImage();
     }
 
-    
-    
-    
 }

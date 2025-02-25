@@ -30,6 +30,7 @@ public class ChatBody extends javax.swing.JPanel {
         addDate("Today");
          addItemLeft("", "Ro", new ImageIcon(getClass().getResource("/chat/realtime/app/Icon/testing/pic.jpg")));
 addItemRight("jajaja puto el que lee ",new ImageIcon(getClass().getResource("/chat/realtime/app/Icon/testing/pic.jpg")));
+addItemRight("jajaja puto el que lee ",new ImageIcon(getClass().getResource("/chat/realtime/app/Icon/testing/cat.png")));
     }
 
     private void init() {

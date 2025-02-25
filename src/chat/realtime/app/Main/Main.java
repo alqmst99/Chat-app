@@ -1,10 +1,12 @@
-
 package chat.realtime.app.Main;
 
+import chat.realtime.app.Component.Event.EventImageView;
+import chat.realtime.app.Component.Event.PublicEvent;
 import chat.realtime.app.Swing.ComponentResizer;
 import chat.realtime.app.Swing.ScrollBar;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
@@ -34,7 +36,22 @@ public class Main extends javax.swing.JFrame {
         cr.setMinimumSize(new Dimension(800, 500));
         cr.setMaximumSize(Toolkit.getDefaultToolkit().getScreenSize());
         cr.setSnapSize(new Dimension(10, 10));
+        viewImage.setVisible(false);
+        home.setVisible(true);
+        initEvent();
+    }
 
+    private void initEvent() {
+        PublicEvent.getInstance().addEventImageView(new EventImageView() {
+            @Override
+            public void viewImage(Icon image) {
+              viewImage.viewImage(image);
+            }
+            @Override
+            public void saveImage(Icon image){
+                System.out.println("image save");
+            }
+        });
     }
 
     /**
@@ -57,7 +74,8 @@ public class Main extends javax.swing.JFrame {
         btnMinimeze = new javax.swing.JButton();
         btnClose = new javax.swing.JButton();
         Body = new javax.swing.JLayeredPane();
-        home2 = new chat.realtime.app.Form.Home();
+        viewImage = new chat.realtime.app.Form.ViewImage();
+        home = new chat.realtime.app.Form.Home();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -103,18 +121,20 @@ public class Main extends javax.swing.JFrame {
         TitleLayout.setHorizontalGroup(
             TitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TitleLayout.createSequentialGroup()
-                .addContainerGap(1107, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnMinimeze, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         TitleLayout.setVerticalGroup(
             TitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnClose, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+            .addComponent(btnClose, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnMinimeze, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        Body.setLayout(new java.awt.BorderLayout());
+        Body.setLayout(new java.awt.CardLayout(1, 1));
+        Body.add(viewImage, "card3");
+        Body.add(home, "card2");
 
         javax.swing.GroupLayout BackgroundLayout = new javax.swing.GroupLayout(Background);
         Background.setLayout(BackgroundLayout);
@@ -137,9 +157,7 @@ public class Main extends javax.swing.JFrame {
             BorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BorderLayout.createSequentialGroup()
                 .addGap(1, 1, 1)
-                .addGroup(BorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(home2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(Background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(Background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(1, 1, 1))
         );
         BorderLayout.setVerticalGroup(
@@ -147,8 +165,7 @@ public class Main extends javax.swing.JFrame {
             .addGroup(BorderLayout.createSequentialGroup()
                 .addGap(1, 1, 1)
                 .addComponent(Background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(home2, javax.swing.GroupLayout.PREFERRED_SIZE, 655, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, 0))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -228,6 +245,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel Title;
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnMinimeze;
-    private chat.realtime.app.Form.Home home2;
+    private chat.realtime.app.Form.Home home;
+    private chat.realtime.app.Form.ViewImage viewImage;
     // End of variables declaration//GEN-END:variables
 }
