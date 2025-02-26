@@ -387,7 +387,9 @@ public class ComponentResizer extends MouseAdapter
 	@Override
 	public void mouseDragged(MouseEvent e)
 	{
-		if (resizing == false) return;
+		if (resizing == false){
+                     return;
+                }
 
 		Component source = e.getComponent();
 		Point dragged = e.getPoint();

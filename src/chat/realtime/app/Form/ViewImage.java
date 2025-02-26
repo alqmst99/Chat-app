@@ -8,9 +8,7 @@ import chat.realtime.app.Component.Event.PublicEvent;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
 
 /**
@@ -41,6 +39,8 @@ public class ViewImage extends javax.swing.JComponent {
 
         pic = new chat.realtime.app.Swing.PictureBox();
         btnSave = new javax.swing.JButton();
+
+        setPreferredSize(new java.awt.Dimension(200, 200));
 
         pic.setMinimumSize(new java.awt.Dimension(200, 200));
         pic.addMouseListener(new java.awt.event.MouseAdapter() {

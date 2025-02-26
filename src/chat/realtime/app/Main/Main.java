@@ -3,7 +3,6 @@ package chat.realtime.app.Main;
 import chat.realtime.app.Component.Event.EventImageView;
 import chat.realtime.app.Component.Event.PublicEvent;
 import chat.realtime.app.Swing.ComponentResizer;
-import chat.realtime.app.Swing.ScrollBar;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.Icon;
@@ -33,7 +32,7 @@ public class Main extends javax.swing.JFrame {
         //config resize window
         ComponentResizer cr = new ComponentResizer();
         cr.registerComponent(this);
-        cr.setMinimumSize(new Dimension(800, 500));
+        cr.setMinimumSize(new Dimension(800, 600));
         cr.setMaximumSize(Toolkit.getDefaultToolkit().getScreenSize());
         cr.setSnapSize(new Dimension(10, 10));
         viewImage.setVisible(false);
