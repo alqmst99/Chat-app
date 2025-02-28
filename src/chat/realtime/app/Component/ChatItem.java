@@ -102,6 +102,17 @@ public class ChatItem extends javax.swing.JLayeredPane {
         add(layer);
 
     }
+    
+       public void setFile(String fileName, String size) {
+        JLayeredPane layer = new JLayeredPane();
+        layer.setLayout(new FlowLayout( FlowLayout.LEFT));
+        layer.setBorder(new EmptyBorder(0, 5, 0, 5));
+       ChatFile chatFile= new ChatFile();
+        chatFile.setFile(fileName, size);
+        layer.add(chatFile);
+        add(layer);
+
+    }
 
     public void hideText() {
         txt.setVisible(false);

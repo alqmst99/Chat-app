@@ -35,6 +35,7 @@ img.setRGB(0, 0, width, height, data, 0, width);
         progress1 = new chat.realtime.app.Swing.Progress();
 
         progress1.setValue(50);
+        progress1.setProgresstype(chat.realtime.app.Swing.Progress.ProgressType.CANCEL);
 
         pic.setLayer(progress1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 

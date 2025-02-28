@@ -24,13 +24,14 @@ class ProgressCircleUI extends BasicProgressBarUI {
     private final Progress pro;
     private final Image imageDown;
     private final Image imageCancel;
+     private final Image imageFile;
     
     //inicialice with constructor Progress variable
 public ProgressCircleUI(Progress pro){
     this.pro = pro;
     imageDown= new ImageIcon(getClass().getResource("/chat/realtime/app/icon/down.png")).getImage();//inicialize image save 
     imageCancel= new ImageIcon(getClass().getResource("/chat/realtime/app/icon/cancel.png")).getImage();//inicialice cancel charge image
-    
+    imageFile= new ImageIcon(getClass().getResource("/chat/realtime/app/icon/file.png")).getImage();//inicialice cancel charge image
 }
     @Override
     public Dimension getPreferredSize(JComponent c) {
@@ -57,7 +58,10 @@ public ProgressCircleUI(Progress pro){
         
         g2.setColor(new Color(60,60,60, 50));
         g2.fillOval(0, 0, pro.getWidth(), pro.getHeight());
-        g2.drawImage(imageDown, 10, 10, pro.getWidth()-20, pro.getHeight()-20, null);
+        if(pro.getProgresstype() != Progress.ProgressType.NONE){
+                    g2.drawImage(pro.getProgresstype() == Progress.ProgressType.CANCEL?imageCancel:pro.getProgresstype() == Progress.ProgressType.DOWN_FILE? imageDown: imageFile, 10, 10, pro.getWidth()-20, pro.getHeight()-20, null);
+
+        }
         g2.setPaint(progressBar.getForeground());
         double degree = 360 * progressBar.getPercentComplete();
         double sz = Math.min(barRectWidth, barRectHeight);

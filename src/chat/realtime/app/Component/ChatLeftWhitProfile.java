@@ -39,9 +39,15 @@ public class ChatLeftWhitProfile extends javax.swing.JLayeredPane {
    public void setImage(Icon... image){
        txt.setImage(false, image);
    }
+   
+   //upload image
     public void setImage(String... image){
        txt.setImage(false, image);
    }
+    
+    public void setFile(String fileName, String size){
+        txt.setFile(fileName, size);
+    }
    
    public void setTime(){
        txt.setTime("18:00 PM");

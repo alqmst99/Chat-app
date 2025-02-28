@@ -33,6 +33,10 @@ public class ChatBody extends javax.swing.JPanel {
         addItemLeft("", "Ro", new ImageIcon(getClass().getResource("/chat/realtime/app/Icon/pic.jpg")));
         addItemRight("jajaja puto el que lee ", new ImageIcon(getClass().getResource("/chat/realtime/app/Icon/pic.jpg")));
         addItemRight("jajaja puto el que lee ", new ImageIcon(getClass().getResource("/chat/realtime/app/Icon/cat.png")));
+        addItemFile("aca esta el archivo importante que te dije", "Ro", "casabianca.xmp", "129 MB");
+        addItemFileRight("","carpeta.mpx", "78 MB");
+        addItemFileLeft("the next archive content virus, plase analize the type attack is","fotos.mpx", "178 MB");
+    
     }
 
     private void init() {
@@ -65,12 +69,45 @@ public class ChatBody extends javax.swing.JPanel {
         Body.revalidate();
     }
 
+        //add File
+    public void addItemFile(String text, String user, String fileName, String size) {
+        ChatLeftWhitProfile item = new ChatLeftWhitProfile();
+        item.setText(text);
+        item.setFile(fileName, size);
+        item.setTime();
+        item.setUserProfile(user);
+        Body.add(item, "wrap, al left, w 100::80%");//w 100:80% ajust size in the content 
+        Body.repaint();
+        Body.revalidate();
+    }
+    
+    
     public void addItemRight(String text, Icon... image) {
         ChatRight item = new ChatRight();
         item.setText(text);
         item.setImage(image);
-
+       
         Body.add(item, "wrap, al right, w 100::80%");
+        Body.repaint();
+        Body.revalidate();
+    }
+    
+      //File upload chat rigth
+        public void addItemFileRight(String text, String fileName, String size) {
+        ChatRight item = new ChatRight();
+       item.setText(text);
+        item.setFile(fileName, size);
+        Body.add(item, "wrap, al right, w 100::80%");
+        Body.repaint();
+        Body.revalidate();
+    }
+        
+        //File upload chat left
+                public void addItemFileLeft(String text, String fileName, String size) {
+        ChatLeft item = new ChatLeft();
+       item.setText(text);
+        item.setFile(fileName, size);
+        Body.add(item, "wrap, al left, w 100::80%");
         Body.repaint();
         Body.revalidate();
     }
