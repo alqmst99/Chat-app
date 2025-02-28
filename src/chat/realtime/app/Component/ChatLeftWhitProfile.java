@@ -2,7 +2,6 @@
 package chat.realtime.app.Component;
 
 import java.awt.Color;
-import java.util.Date;
 import javax.swing.Icon;
 
 /**
@@ -37,7 +36,10 @@ public class ChatLeftWhitProfile extends javax.swing.JLayeredPane {
    }
    
  
-   public void setImage(Icon ...image){
+   public void setImage(Icon... image){
+       txt.setImage(false, image);
+   }
+    public void setImage(String... image){
        txt.setImage(false, image);
    }
    
@@ -57,7 +59,7 @@ public class ChatLeftWhitProfile extends javax.swing.JLayeredPane {
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.LINE_AXIS));
 
         IaImage.setBorderSize(0);
-        IaImage.setImage(new javax.swing.ImageIcon(getClass().getResource("/chat/realtime/app/Icon/testing/dog.jpg"))); // NOI18N
+        IaImage.setImage(new javax.swing.ImageIcon(getClass().getResource("/chat/realtime/app/Icon/icon.png"))); // NOI18N
         IaImage.setMaximumSize(new java.awt.Dimension(31, 31));
         IaImage.setMinimumSize(new java.awt.Dimension(31, 31));
 

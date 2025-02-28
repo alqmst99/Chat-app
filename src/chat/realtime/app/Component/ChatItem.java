@@ -24,9 +24,9 @@ public class ChatItem extends javax.swing.JLayeredPane {
     /**
      * Creates new form ChatItem
      */
-    
-     private JLabel label;
-     //private  button;
+    private JLabel label;
+    //private  button;
+
     public ChatItem() {
         initComponents();
         txt.setEditable(false);
@@ -35,23 +35,22 @@ public class ChatItem extends javax.swing.JLayeredPane {
 
     }
 
-   public void setUserProfile(String user){
-            JLayeredPane layer = new JLayeredPane();
+    public void setUserProfile(String user) {
+        JLayeredPane layer = new JLayeredPane();
         layer.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
         layer.setBorder(new EmptyBorder(10, 10, 0, 10));
-       JButton button = new JButton(user);
-       button.setCursor(new Cursor(Cursor.HAND_CURSOR) {
-       });
+        JButton button = new JButton(user);
+        button.setCursor(new Cursor(Cursor.HAND_CURSOR) {
+        });
         button.setBorder(null);
         button.setContentAreaFilled(false);
         button.setFocusable(false);
-        button.setForeground(new Color(30,121,213));
+        button.setForeground(new Color(30, 121, 213));
         button.setFont(new java.awt.Font("sansserif", 1, 13));
-        txt.setBorder(javax.swing.BorderFactory.createEmptyBorder(10,10,5,10));//border factory 
+        txt.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 5, 10));//border factory 
         layer.add(button);
         add(layer, 0);
     }
-
 
     public void setTxt(String text) {
         txt.setText(text);
@@ -69,34 +68,45 @@ public class ChatItem extends javax.swing.JLayeredPane {
         layer.add(label);
         add(layer);
     }
-    
-    public void sendSucces(){
-         if(label != null){
-             label.setIcon(new ImageIcon(getClass().getResource("/chat/realtime/app/Icon/tick.png")));
-         }
+
+    public void sendSucces() {
+        if (label != null) {
+            label.setIcon(new ImageIcon(getClass().getResource("/chat/realtime/app/Icon/tick.png")));
+        }
     }
 
-      public void seen(){
-         if(label != null){
-             label.setIcon(new ImageIcon(getClass().getResource("/chat/realtime/app/Icon/double_tick.png")));
-         }
+    public void seen() {
+        if (label != null) {
+            label.setIcon(new ImageIcon(getClass().getResource("/chat/realtime/app/Icon/double_tick.png")));
+        }
     }
-      
-      public void setImage(boolean right, Icon ...image){
-          JLayeredPane layer= new JLayeredPane();
-          layer.setLayout(new FlowLayout(right ? FlowLayout.RIGHT : FlowLayout.LEFT));
-          layer.setBorder(new EmptyBorder(0,5,5,5));
-          ChatImage chatImage= new ChatImage(right);
-          chatImage.addImage(image);
-          layer.add(chatImage);
-          add(layer);
-          
-      }
-      
-      public void hideText(){
-          txt.setVisible(false);
-          
-      }
+
+    public void setImage(boolean right, Icon... image) {
+        JLayeredPane layer = new JLayeredPane();
+        layer.setLayout(new FlowLayout(right ? FlowLayout.RIGHT : FlowLayout.LEFT));
+        layer.setBorder(new EmptyBorder(0, 5, 5, 5));
+        ChatImage chatImage = new ChatImage(right);
+        chatImage.addImage(image);
+        layer.add(chatImage);
+        add(layer);
+
+    }
+
+    public void setImage(boolean right, String... image) {
+        JLayeredPane layer = new JLayeredPane();
+        layer.setLayout(new FlowLayout(right ? FlowLayout.RIGHT : FlowLayout.LEFT));
+        layer.setBorder(new EmptyBorder(0, 5, 5, 5));
+        ChatImage chatImage = new ChatImage(right);
+        chatImage.addImage(image);
+        layer.add(chatImage);
+        add(layer);
+
+    }
+
+    public void hideText() {
+        txt.setVisible(false);
+
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

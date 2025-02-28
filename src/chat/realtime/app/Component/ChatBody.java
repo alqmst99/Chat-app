@@ -4,7 +4,6 @@ import chat.realtime.app.Swing.ScrollBar;
 import java.awt.Color;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JScrollBar;
 import net.miginfocom.swing.MigLayout;
 
 /**
@@ -22,15 +21,18 @@ public class ChatBody extends javax.swing.JPanel {
         addItemLeft("A JTextArea is a multi-line text component to display text CaretListener interface when we are trying to implement the functionality of the JTextArea component.", "pepito");
         addItemRight("jajaja puto el que lee ");
         addDate("25/12/1800");
-         addItemLeft("A JTextArea is a  to implement the functionality of the JTextArea component.", "pepito");
+        addItemLeft("A JTextArea is a  to implement the functionality of the JTextArea component.", "pepito");
         addItemRight("A JTextArea is a multi-line text component to display text CaretListener interface when we are trying to implement the functionality of the JTextArea component. ");
         addDate("1/1/1900");
-         addItemLeft("trying to implement the functionality of the JTextArea component.", "pepito", new ImageIcon(getClass().getResource("/chat/realtime/app/Icon/testing/dog.jpg")), new ImageIcon(getClass().getResource("/chat/realtime/app/Icon/testing/pic.jpg")));
+        String img[] = {"URMj,K-:?G9G_JIon}WqD~ITRPs,otV@RQoy"};
+        addItemLeft("solemne", "pepito", img);
+
+        addItemLeft("trying to implement the functionality of the JTextArea component.", "pepito", new ImageIcon(getClass().getResource("/chat/realtime/app/Icon/dog.jpg")), new ImageIcon(getClass().getResource("/chat/realtime/app/Icon/pic.jpg")));
         addItemRight("jajaja puto el que lee ");
         addDate("Today");
-         addItemLeft("", "Ro", new ImageIcon(getClass().getResource("/chat/realtime/app/Icon/testing/pic.jpg")));
-addItemRight("jajaja puto el que lee ",new ImageIcon(getClass().getResource("/chat/realtime/app/Icon/testing/pic.jpg")));
-addItemRight("jajaja puto el que lee ",new ImageIcon(getClass().getResource("/chat/realtime/app/Icon/testing/cat.png")));
+        addItemLeft("", "Ro", new ImageIcon(getClass().getResource("/chat/realtime/app/Icon/pic.jpg")));
+        addItemRight("jajaja puto el que lee ", new ImageIcon(getClass().getResource("/chat/realtime/app/Icon/pic.jpg")));
+        addItemRight("jajaja puto el que lee ", new ImageIcon(getClass().getResource("/chat/realtime/app/Icon/cat.png")));
     }
 
     private void init() {
@@ -40,7 +42,7 @@ addItemRight("jajaja puto el que lee ",new ImageIcon(getClass().getResource("/ch
     }
 
     //add message text field 
-    public void addItemLeft(String text, String user, Icon ...image) {
+    public void addItemLeft(String text, String user, Icon... image) {
         ChatLeftWhitProfile item = new ChatLeftWhitProfile();
         item.setText(text);
         item.setImage(image);
@@ -51,7 +53,19 @@ addItemRight("jajaja puto el que lee ",new ImageIcon(getClass().getResource("/ch
         Body.revalidate();
     }
 
-    public void addItemRight(String text, Icon ...image) {
+    //add message text field 
+    public void addItemLeft(String text, String user, String[] image) {
+        ChatLeftWhitProfile item = new ChatLeftWhitProfile();
+        item.setText(text);
+        item.setImage(image);
+        item.setTime();
+        item.setUserProfile(user);
+        Body.add(item, "wrap, al left, w 100::80%");//w 100:80% ajust size in the content 
+        Body.repaint();
+        Body.revalidate();
+    }
+
+    public void addItemRight(String text, Icon... image) {
         ChatRight item = new ChatRight();
         item.setText(text);
         item.setImage(image);
@@ -60,14 +74,15 @@ addItemRight("jajaja puto el que lee ",new ImageIcon(getClass().getResource("/ch
         Body.repaint();
         Body.revalidate();
     }
-    
-    public void addDate(String date){
-        ChatDate item= new ChatDate();
+
+    public void addDate(String date) {
+        ChatDate item = new ChatDate();
         item.setDate(date);
         Body.add(item, "wrap,al center ");
         Body.repaint();
         Body.revalidate();
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

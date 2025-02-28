@@ -28,7 +28,12 @@ public class ChatRight extends javax.swing.JLayeredPane {
    }
    
  
-   public void setImage(Icon ...image){
+   public void setImage(Icon... image){
+       txt.setImage(true, image);
+   }
+   
+   //chat charge blur hash
+     public void setImage(String... image){
        txt.setImage(true, image);
    }
    

@@ -27,8 +27,13 @@ public class ChatLeft extends javax.swing.JLayeredPane {
       }
    }
    
- 
-   public void setImage(Icon ...image){
+ //image chat 
+   public void setImage(Icon... image){
+       txt.setImage(false, image);
+   }
+   
+   //image charge blurhash
+    public void setImage(String... image){
        txt.setImage(false, image);
    }
    
