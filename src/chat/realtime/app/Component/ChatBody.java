@@ -1,9 +1,13 @@
 package chat.realtime.app.Component;
 
 import chat.realtime.app.Swing.ScrollBar;
+import java.awt.Adjustable;
 import java.awt.Color;
+import java.awt.event.AdjustmentEvent;
+import java.awt.event.AdjustmentListener;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JScrollBar;
 import net.miginfocom.swing.MigLayout;
 
 /**
@@ -86,10 +90,11 @@ public class ChatBody extends javax.swing.JPanel {
         ChatRight item = new ChatRight();
         item.setText(text);
         item.setImage(image);
-       
+       item.setTime();
         Body.add(item, "wrap, al right, w 100::80%");
         Body.repaint();
         Body.revalidate();
+        scrollToBottom();
     }
     
       //File upload chat rigth
@@ -156,7 +161,19 @@ public class ChatBody extends javax.swing.JPanel {
             .addComponent(sp)
         );
     }// </editor-fold>//GEN-END:initComponents
-
+ //Fill to the end Scrollbar after send message
+    private void scrollToBottom() {
+        JScrollBar verticalBar = sp.getVerticalScrollBar();
+        AdjustmentListener downScroller = new AdjustmentListener() {
+            @Override
+            public void adjustmentValueChanged(AdjustmentEvent e) {
+                Adjustable adjustable = e.getAdjustable();
+                adjustable.setValue(adjustable.getMaximum());
+                verticalBar.removeAdjustmentListener(this);
+            }
+        };
+        verticalBar.addAdjustmentListener(downScroller);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Body;

@@ -82,13 +82,15 @@ public class ChatItem extends javax.swing.JLayeredPane {
     }
 
     public void setImage(boolean right, Icon... image) {
-        JLayeredPane layer = new JLayeredPane();
+if(image.length >0 ){
+            JLayeredPane layer = new JLayeredPane();
         layer.setLayout(new FlowLayout(right ? FlowLayout.RIGHT : FlowLayout.LEFT));
         layer.setBorder(new EmptyBorder(0, 5, 5, 5));
         ChatImage chatImage = new ChatImage(right);
         chatImage.addImage(image);
         layer.add(chatImage);
         add(layer);
+}
 
     }
 

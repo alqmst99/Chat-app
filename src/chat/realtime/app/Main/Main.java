@@ -74,10 +74,13 @@ public class Main extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        setSize(new java.awt.Dimension(900, 500));
 
         Border.setBackground(new java.awt.Color(229, 229, 229));
+        Border.setPreferredSize(new java.awt.Dimension(900, 700));
 
         Background.setBackground(new java.awt.Color(255, 255, 255));
+        Background.setPreferredSize(new java.awt.Dimension(900, 500));
 
         Title.setBackground(new java.awt.Color(229, 229, 229));
         Title.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -129,6 +132,9 @@ public class Main extends javax.swing.JFrame {
 
         Body.setLayout(new java.awt.CardLayout(1, 1));
         Body.add(viewImage, "card3");
+
+        home.setMinimumSize(new java.awt.Dimension(900, 700));
+        home.setPreferredSize(new java.awt.Dimension(900, 700));
         Body.add(home, "card2");
 
         javax.swing.GroupLayout BackgroundLayout = new javax.swing.GroupLayout(Background);
@@ -142,8 +148,8 @@ public class Main extends javax.swing.JFrame {
             BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BackgroundLayout.createSequentialGroup()
                 .addComponent(Title, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Body, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Body))
         );
 
         javax.swing.GroupLayout BorderLayout = new javax.swing.GroupLayout(Border);
@@ -152,14 +158,14 @@ public class Main extends javax.swing.JFrame {
             BorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BorderLayout.createSequentialGroup()
                 .addGap(1, 1, 1)
-                .addComponent(Background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Background, javax.swing.GroupLayout.DEFAULT_SIZE, 1024, Short.MAX_VALUE)
                 .addGap(1, 1, 1))
         );
         BorderLayout.setVerticalGroup(
             BorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BorderLayout.createSequentialGroup()
                 .addGap(1, 1, 1)
-                .addComponent(Background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Background, javax.swing.GroupLayout.PREFERRED_SIZE, 722, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
 
@@ -167,11 +173,11 @@ public class Main extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Border, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Border, javax.swing.GroupLayout.DEFAULT_SIZE, 1026, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Border, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Border, javax.swing.GroupLayout.DEFAULT_SIZE, 723, Short.MAX_VALUE)
         );
 
         pack();

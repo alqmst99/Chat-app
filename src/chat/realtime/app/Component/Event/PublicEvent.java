@@ -1,7 +1,6 @@
 
 package chat.realtime.app.Component.Event;
 
-import com.sun.source.tree.InstanceOfTree;
 
 /**
  *
@@ -14,6 +13,12 @@ public class PublicEvent {
    
    private EventImageView eventImageView;
    
+   private EventChat eventChat;
+   
+     private PublicEvent(){
+       
+   }
+     
   public static PublicEvent getInstance(){
        
        if(instance== null){
@@ -27,12 +32,18 @@ public class PublicEvent {
        this.eventImageView = evt;
    }
    
+   public void addEventChat(EventChat event){
+       this.eventChat= event;
+   }
+   
    public  EventImageView getEventImageView(){
        return eventImageView;
    }
    
-   private PublicEvent(){
-       
+   public EventChat getEventChat(){
+       return eventChat;
    }
+   
+ 
     
 }

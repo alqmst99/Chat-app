@@ -28,7 +28,7 @@ public class ChatFile extends javax.swing.JPanel {
         lbFileName = new javax.swing.JLabel();
         lbFileSize = new javax.swing.JLabel();
 
-        progress1.setProgresstype(chat.realtime.app.Swing.Progress.ProgressType.FILE);
+        progress1.setProgresstype(chat.realtime.app.Swing.Progress.ProgressType.DOWN_FILE);
 
         jPanel1.setOpaque(false);
         jPanel1.setLayout(new java.awt.GridLayout(2, 1));

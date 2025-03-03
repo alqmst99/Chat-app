@@ -42,7 +42,7 @@
     <Component class="chat.realtime.app.Swing.Progress" name="progress1">
       <Properties>
         <Property name="progresstype" type="chat.realtime.app.Swing.Progress$ProgressType" editor="org.netbeans.modules.form.editors.EnumEditor">
-          <Value id="FILE"/>
+          <Value id="DOWN_FILE"/>
         </Property>
       </Properties>
     </Component>
