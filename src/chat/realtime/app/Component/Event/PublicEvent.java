@@ -15,6 +15,10 @@ public class PublicEvent {
    
    private EventChat eventChat;
    
+   private EventLogin eventLogin;
+   
+   private EventMain eventMain;
+   
      private PublicEvent(){
        
    }
@@ -28,12 +32,27 @@ public class PublicEvent {
        return instance;
    }
    
-   public void addEventImageView( EventImageView evt){
-       this.eventImageView = evt;
+  public void addEventMain(EventMain event){
+      this.eventMain= event;
+  }
+  public void addEventLogin(EventLogin event){
+      this.eventLogin = event;
+  }
+  
+   public void addEventImageView( EventImageView event){
+       this.eventImageView = event;
    }
    
    public void addEventChat(EventChat event){
        this.eventChat= event;
+   }
+   
+   public EventMain getEventMain(){
+       return eventMain;
+   }
+   
+   public EventLogin getEventLogin(){
+       return eventLogin;
    }
    
    public  EventImageView getEventImageView(){

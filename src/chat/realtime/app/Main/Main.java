@@ -1,8 +1,10 @@
 package chat.realtime.app.Main;
 
 import chat.realtime.app.Component.Event.EventImageView;
+import chat.realtime.app.Component.Event.EventMain;
 import chat.realtime.app.Component.Event.PublicEvent;
 import chat.realtime.app.Swing.ComponentResizer;
+import com.formdev.flatlaf.intellijthemes.FlatArcIJTheme;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.Icon;
@@ -35,12 +37,31 @@ public class Main extends javax.swing.JFrame {
         cr.setMinimumSize(new Dimension(900, 500));
         cr.setMaximumSize(Toolkit.getDefaultToolkit().getScreenSize());
         cr.setSnapSize(new Dimension(10, 10));
+        login.setVisible(true);
+        loading.setVisible(false);
         viewImage.setVisible(false);
-        home.setVisible(true);
+        home.setVisible(false);
         initEvent();
     }
 
     private void initEvent() {
+        PublicEvent.getInstance().addEventMain(new EventMain() {
+            @Override
+            public void showLoading(boolean show) {
+               
+           loading.setVisible(show);
+           validate();
+          
+            }
+
+            @Override
+            public void initChat() {
+               
+                home.setVisible(true);
+            }
+        });
+        
+        
         PublicEvent.getInstance().addEventImageView(new EventImageView() {
             @Override
             public void viewImage(Icon image) {
@@ -69,6 +90,8 @@ public class Main extends javax.swing.JFrame {
         btnMinimeze = new javax.swing.JButton();
         btnClose = new javax.swing.JButton();
         Body = new javax.swing.JLayeredPane();
+        loading = new chat.realtime.app.Form.Loading();
+        login = new chat.realtime.app.Form.Login();
         viewImage = new chat.realtime.app.Form.ViewImage();
         home = new chat.realtime.app.Form.Home();
 
@@ -131,6 +154,8 @@ public class Main extends javax.swing.JFrame {
         );
 
         Body.setLayout(new java.awt.CardLayout(1, 1));
+        Body.add(loading, "card5");
+        Body.add(login, "card4");
         Body.add(viewImage, "card3");
 
         home.setMinimumSize(new java.awt.Dimension(900, 700));
@@ -208,31 +233,11 @@ public class Main extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+        FlatArcIJTheme.setup();
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new Main().setVisible(true);
             }
@@ -247,6 +252,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnMinimeze;
     private chat.realtime.app.Form.Home home;
+    private chat.realtime.app.Form.Loading loading;
+    private chat.realtime.app.Form.Login login;
     private chat.realtime.app.Form.ViewImage viewImage;
     // End of variables declaration//GEN-END:variables
 }
