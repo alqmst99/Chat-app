@@ -3,11 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Nahue/OneDrive/Escritorio/develops/Java-App/Chat-Realtime-app/src/chat/realtime/app/ChatRealtimeApp.java</file>
+            <file>file:/C:/Users/Nahue/OneDrive/Escritorio/develops/Java-App/Chat-Realtime-app/src/chat/realtime/app/Form/PageRegister.java</file>
+            <file>file:/C:/Users/Nahue/OneDrive/Escritorio/develops/Java-App/Chat-Realtime-app/src/chat/realtime/app/Component/Event/EventLogin.java</file>
             <file>file:/C:/Users/Nahue/OneDrive/Escritorio/develops/Java-App/Chat-Realtime-app/src/chat/realtime/app/Form/Login.java</file>
-            <file>file:/C:/Users/Nahue/OneDrive/Escritorio/develops/Java-App/Chat-Realtime-app/src/chat/realtime/app/Swing/PanelSlide.java</file>
-            <file>file:/C:/Users/Nahue/OneDrive/Escritorio/develops/Java-App/Chat-Realtime-app/src/chat/realtime/app/Main/Main.java</file>
-            <file>file:/C:/Users/Nahue/OneDrive/Escritorio/develops/Java-App/Chat-Realtime-app/src/chat/realtime/app/Form/PageLogin.java</file>
+            <file>file:/C:/Users/Nahue/OneDrive/Escritorio/develops/Java-App/Chat-Realtime-app/src/chat/realtime/app/Component/Event/EventMessage.java</file>
         </group>
     </open-files>
 </project-private>

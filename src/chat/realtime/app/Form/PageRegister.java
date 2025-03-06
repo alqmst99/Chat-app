@@ -1,7 +1,10 @@
 
 package chat.realtime.app.Form;
 
+import chat.realtime.app.Component.Event.EventMessage;
 import chat.realtime.app.Component.Event.PublicEvent;
+import chat.realtime.app.Main.Model.Model_Message;
+import chat.realtime.app.Main.Model.Model_Register;
 
 /**
  *
@@ -28,6 +31,7 @@ public class PageRegister extends javax.swing.JPanel {
         btnBack = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         txtRePassword = new javax.swing.JPasswordField();
+        lbError = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -72,6 +76,9 @@ public class PageRegister extends javax.swing.JPanel {
         txtRePassword.setBackground(new java.awt.Color(255, 255, 255));
         txtRePassword.setForeground(new java.awt.Color(0, 0, 0));
 
+        lbError.setBackground(new java.awt.Color(255, 255, 255));
+        lbError.setForeground(new java.awt.Color(255, 51, 51));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -79,8 +86,9 @@ public class PageRegister extends javax.swing.JPanel {
             .addComponent(lbTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lbError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
@@ -88,11 +96,11 @@ public class PageRegister extends javax.swing.JPanel {
                                 .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
                                 .addGap(72, 72, 72)))
                         .addGap(9, 9, 9))
-                    .addComponent(btnRegister, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnBack, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtRePassword)
-                    .addComponent(txtPassword)
-                    .addComponent(txtUser))
+                    .addComponent(btnRegister, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnBack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtRePassword, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtUser, javax.swing.GroupLayout.Alignment.LEADING))
                 .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
@@ -116,7 +124,9 @@ public class PageRegister extends javax.swing.JPanel {
                 .addComponent(btnRegister)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51))
+                .addGap(18, 18, 18)
+                .addComponent(lbError, javax.swing.GroupLayout.DEFAULT_SIZE, 21, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -125,7 +135,33 @@ public class PageRegister extends javax.swing.JPanel {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
-       PublicEvent.getInstance().getEventLogin().register();
+       String userName= txtUser.getText().trim();
+       String password= String.valueOf(txtPassword.getPassword());
+       String confirmPassword= String.valueOf(txtRePassword.getPassword());
+       
+       if(userName.equals("")){
+           txtUser.grabFocus();
+       } else if(password.equals("")){
+           
+           txtPassword.grabFocus();
+           
+       } else if(!password.equals(password)){
+           
+       } else {
+           Model_Register data = new Model_Register(userName, password);
+            PublicEvent.getInstance().getEventLogin().register(data, new EventMessage() {
+               @Override
+               public void callMessage(Model_Message message) {
+                   if (!message.isAction()){
+                       lbError.setText(message.getMessage());
+                   } else {
+                       PublicEvent.getInstance().getEventLogin().login();
+                   }
+               }
+            });
+       }
+       
+       
     }//GEN-LAST:event_btnRegisterActionPerformed
 
 
@@ -135,6 +171,7 @@ public class PageRegister extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel lbError;
     private javax.swing.JLabel lbTitle;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JPasswordField txtRePassword;

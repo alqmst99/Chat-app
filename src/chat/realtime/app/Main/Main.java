@@ -10,6 +10,7 @@ import java.awt.Toolkit;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import chat.realtime.app.Service.Service;
 
 /**
  *
@@ -42,6 +43,7 @@ public class Main extends javax.swing.JFrame {
         viewImage.setVisible(false);
         home.setVisible(false);
         initEvent();
+        Service.getInstance().startServer();
     }
 
     private void initEvent() {
