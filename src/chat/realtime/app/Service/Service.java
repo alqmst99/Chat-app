@@ -1,16 +1,21 @@
 package chat.realtime.app.Service;
 
+import chat.realtime.app.Component.Event.PublicEvent;
+import chat.realtime.app.Main.Model.Model_User_Account;
 import io.socket.client.IO;
 import io.socket.client.Socket;
+import io.socket.emitter.Emitter;
 import java.net.URISyntaxException;
-import javax.swing.JTextArea;
-
+import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author Nahuel Pierini
  * @Enterprise: FSTailSolution
  */
 public class Service {
+
+
 
  
     
@@ -19,6 +24,7 @@ public class Service {
   
     private final int PORT_NUMBER = 9999;
     private final String IP = "localhost";
+    private Model_User_Account user;
     
     public static Service getInstance() {
         if (instance == null) {
@@ -34,8 +40,20 @@ public class Service {
     public void startServer() {
         try {
               client = IO.socket("http://" + IP + ":" + PORT_NUMBER);
-      
-            getClient().open();
+              client.on("list_user", new Emitter.Listener() {
+                  @Override
+                  public void call(Object... os) {
+                      // list user
+                      List<Model_User_Account> users = new ArrayList<>();
+                      for(Object o : os){
+                          users.add(new Model_User_Account(o));
+                          
+                      }
+                      PublicEvent.getInstance().getEventLeft().newUser(users);
+                      System.out.println(users);
+                  }
+              });
+            client.open();
      
         } catch (URISyntaxException e) {
             error(e);
@@ -52,5 +70,19 @@ public class Service {
     
     private void error(Exception e){
         System.err.println(e);
+    }
+    
+        /**
+     * @return the user
+     */
+    public Model_User_Account getUser() {
+        return user;
+    }
+
+    /**
+     * @param user the user to set
+     */
+    public void setUser(Model_User_Account user) {
+        this.user = user;
     }
 }

@@ -1,7 +1,12 @@
 package chat.realtime.app.Form;
 
+import chat.realtime.app.Component.Event.EventMenuLeft;
+import chat.realtime.app.Component.Event.PublicEvent;
 import chat.realtime.app.Component.ItemPeople;
+import chat.realtime.app.Main.Model.Model_User_Account;
 import chat.realtime.app.Swing.ScrollBar;
+import java.util.ArrayList;
+import java.util.List;
 import net.miginfocom.swing.MigLayout;
 
 /**
@@ -10,6 +15,10 @@ import net.miginfocom.swing.MigLayout;
  */
 public class Menu_left extends javax.swing.JPanel {
 
+    
+    private List<Model_User_Account> userAccount;
+    
+    
     /**
      * Creates new form Menu_left
      */
@@ -22,14 +31,26 @@ public class Menu_left extends javax.swing.JPanel {
     private void init() {
         sp.setVerticalScrollBar(new ScrollBar());
         ListMenu.setLayout(new MigLayout("fillx", "0[]0", "0[]0"));
+        userAccount= new ArrayList<>();
+        PublicEvent.getInstance().addEventLeft(new EventMenuLeft() {
+            @Override
+            public void newUser(List<Model_User_Account> users) {
+               for(Model_User_Account d : users){
+                   userAccount.add(d);
+                   ListMenu.add(new ItemPeople(d.getUserName()), "wrap");
+                   System.out.print(d.getUserName());
+               }
+            }
+        });
         showMessage();
     }
 
     private void showMessage() {
        ListMenu.removeAll();
         //Test data
-        for (int i = 0; i < 20; i++) {
-            ListMenu.add(new ItemPeople("people " + i), "wrap");
+        for (Model_User_Account d : userAccount) {
+            ListMenu.add(new ItemPeople(d.getUserName()), "wrap");
+            System.out.println(d.getUserName());
         }
         refreshMenuList();
     }

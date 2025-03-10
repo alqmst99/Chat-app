@@ -78,6 +78,7 @@ public class PageRegister extends javax.swing.JPanel {
 
         lbError.setBackground(new java.awt.Color(255, 255, 255));
         lbError.setForeground(new java.awt.Color(255, 51, 51));
+        lbError.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

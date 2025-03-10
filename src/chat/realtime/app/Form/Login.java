@@ -5,8 +5,10 @@ import chat.realtime.app.Component.Event.EventMessage;
 import chat.realtime.app.Component.Event.PublicEvent;
 import chat.realtime.app.Main.Model.Model_Message;
 import chat.realtime.app.Main.Model.Model_Register;
+import chat.realtime.app.Main.Model.Model_User_Account;
 import chat.realtime.app.Service.Service;
 import io.socket.client.Ack;
+import javax.annotation.processing.Messager;
 
 /**
  *
@@ -52,6 +54,11 @@ public class Login extends javax.swing.JPanel {
                         if(os.length > 0){
                             Model_Message ms= new Model_Message((boolean) os[0], os[1].toString());
                             message.callMessage(ms);
+                            
+                            if(ms.isAction()){
+                                Model_User_Account user= new Model_User_Account(os[2]);
+                               Service.getInstance().setUser(user);
+                            }
                         //call back when done register
                         
                         }

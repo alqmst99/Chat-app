@@ -14,6 +14,7 @@ public class ItemPeople extends javax.swing.JPanel {
 
     /**
      * Creates new form ItemPeople
+     * @param name
      */
     public ItemPeople(String name) {
         initComponents();

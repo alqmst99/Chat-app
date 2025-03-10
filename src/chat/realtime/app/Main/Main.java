@@ -11,6 +11,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import chat.realtime.app.Service.Service;
+import io.socket.emitter.Emitter;
 
 /**
  *
@@ -60,6 +61,7 @@ public class Main extends javax.swing.JFrame {
             public void initChat() {
                
                 home.setVisible(true);
+                Emitter emit= Service.getInstance().getClient().emit("list_user", Service.getInstance().getUser().getId());
             }
         });
         
