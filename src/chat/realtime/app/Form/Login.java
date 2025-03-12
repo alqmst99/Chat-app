@@ -3,12 +3,12 @@ package chat.realtime.app.Form;
 import chat.realtime.app.Component.Event.EventLogin;
 import chat.realtime.app.Component.Event.EventMessage;
 import chat.realtime.app.Component.Event.PublicEvent;
+import chat.realtime.app.Main.Model.Model_Login;
 import chat.realtime.app.Main.Model.Model_Message;
 import chat.realtime.app.Main.Model.Model_Register;
 import chat.realtime.app.Main.Model.Model_User_Account;
 import chat.realtime.app.Service.Service;
 import io.socket.client.Ack;
-import javax.annotation.processing.Messager;
 
 /**
  *
@@ -24,46 +24,64 @@ public class Login extends javax.swing.JPanel {
     private void init() {
         PublicEvent.getInstance().addEventLogin(new EventLogin() {
             @Override
-            public void login() {
+            public void login(Model_Login data) {
                 //implement Threads, count time response 
-          new Thread(new Runnable(){
-              @Override
-              public void run() {
-                   System.out.println("Login");
-                PublicEvent.getInstance().getEventMain().showLoading(true);
-                try {
-                    Thread.sleep(3000); //for test 
-                } catch (InterruptedException e) {
-                    System.out.println(e);
-                }
-                PublicEvent.getInstance().getEventMain().showLoading(false);
-                PublicEvent.getInstance().getEventMain().initChat();
-                setVisible(false);
-              }
-              
-          }).start();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        PublicEvent.getInstance().getEventMain().showLoading(true);
+                        System.out.println(data.toJsonObject());
+                        Service.getInstance().getClient().emit("login", data.toJsonObject(), new Ack() {
+                            @Override
+                            public void call(Object... os) {
+                                System.out.println(os.length);
+                                if (os.length > 0) {
+                                    boolean action = (Boolean) os[0];
+                                    System.out.println(action);
+                                    if (action) {
+                                        Service.getInstance().setUser(new Model_User_Account(os[1]));
+                                        PublicEvent.getInstance().getEventMain().showLoading(false);
+                                        PublicEvent.getInstance().getEventMain().initChat();
+                                        System.out.print("The user has login");
+
+                                    } else {
+                                        //password wrong
+                                        PublicEvent.getInstance().getEventMain().showLoading(false);
+                                        System.out.println("Error: El servidor no envió datos de usuario.");
+                                    }
+                                } else {
+                                    PublicEvent.getInstance().getEventMain().showLoading(false);
+                                    System.out.println("Login fallido");
+                                }
+
+                            }
+                        });
+
+                    }
+
+                }).start();
             }
 
             @Override
             public void register(Model_Register data, EventMessage message) {
-                
-                Service.getInstance().getClient().emit("register", data.toJsonObject(), new Ack(){
+
+                Service.getInstance().getClient().emit("register", data.toJsonObject(), new Ack() {
                     @Override
                     public void call(Object... os) {
-                       
-                        if(os.length > 0){
-                            Model_Message ms= new Model_Message((boolean) os[0], os[1].toString());
-                            message.callMessage(ms);
-                            
-                            if(ms.isAction()){
-                                Model_User_Account user= new Model_User_Account(os[2]);
-                               Service.getInstance().setUser(user);
+
+                        if (os.length > 0 && os[1] != null) {
+                            Model_Message ms = new Model_Message((boolean) os[0], os[1].toString());
+
+                            if (ms.isAction()) {
+                                Model_User_Account user = new Model_User_Account(os[2]);
+                                Service.getInstance().setUser(user);
                             }
-                        //call back when done register
-                        
+                            //call back when done register
+                            message.callMessage(ms);
                         }
                     }
-                    
+
                 });
             }
 

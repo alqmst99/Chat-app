@@ -146,8 +146,8 @@ public class PageRegister extends javax.swing.JPanel {
            
            txtPassword.grabFocus();
            
-       } else if(!password.equals(password)){
-           
+       } else if(!password.equals(confirmPassword)){
+           lbError.setText("The Password not coincidence");
        } else {
            Model_Register data = new Model_Register(userName, password);
             PublicEvent.getInstance().getEventLogin().register(data, new EventMessage() {
@@ -156,7 +156,8 @@ public class PageRegister extends javax.swing.JPanel {
                    if (!message.isAction()){
                        lbError.setText(message.getMessage());
                    } else {
-                       PublicEvent.getInstance().getEventLogin().login();
+                       //add login event 
+                       PublicEvent.getInstance().getEventMain().initChat();
                    }
                }
             });

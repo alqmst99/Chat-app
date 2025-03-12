@@ -51,34 +51,33 @@ public class Main extends javax.swing.JFrame {
         PublicEvent.getInstance().addEventMain(new EventMain() {
             @Override
             public void showLoading(boolean show) {
-               
-           loading.setVisible(show);
-           validate();
-          
+
+                loading.setVisible(show);
+                validate();
+
             }
 
             @Override
             public void initChat() {
-               
                 home.setVisible(true);
-                Emitter emit= Service.getInstance().getClient().emit("list_user", Service.getInstance().getUser().getId());
+                login.setVisible(false);
+                Service.getInstance().getClient().emit("list_user", Service.getInstance().getUser().getId());
             }
         });
-        
-        
+
         PublicEvent.getInstance().addEventImageView(new EventImageView() {
             @Override
             public void viewImage(Icon image) {
-              viewImage.viewImage(image);
+                viewImage.viewImage(image);
             }
+
             @Override
-            public void saveImage(Icon image){
+            public void saveImage(Icon image) {
                 System.out.println("image save");
             }
         });
     }
 
-    
     @SuppressWarnings("unchecked")
 
     //Inicialize vars pX, Py

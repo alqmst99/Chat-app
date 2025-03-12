@@ -24,6 +24,8 @@ public class Service {
   
     private final int PORT_NUMBER = 9999;
     private final String IP = "localhost";
+
+   
     private Model_User_Account user;
     
     public static Service getInstance() {
@@ -46,11 +48,14 @@ public class Service {
                       // list user
                       List<Model_User_Account> users = new ArrayList<>();
                       for(Object o : os){
-                          users.add(new Model_User_Account(o));
+                         Model_User_Account u = new Model_User_Account(o);
+                         if(u.getId() != user.getId()){
+                             users.add(u);
+                         }
                           
                       }
                       PublicEvent.getInstance().getEventLeft().newUser(users);
-                      System.out.println(users);
+                     
                   }
               });
             client.open();
@@ -69,19 +74,13 @@ public class Service {
     }
     
     private void error(Exception e){
-        System.err.println(e);
+        System.err.print(e);
     }
     
-        /**
-     * @return the user
-     */
-    public Model_User_Account getUser() {
+ public Model_User_Account getUser() {
         return user;
     }
 
-    /**
-     * @param user the user to set
-     */
     public void setUser(Model_User_Account user) {
         this.user = user;
     }

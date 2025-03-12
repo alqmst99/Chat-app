@@ -2,6 +2,7 @@
 package chat.realtime.app.Form;
 
 import chat.realtime.app.Component.Event.PublicEvent;
+import chat.realtime.app.Main.Model.Model_Login;
 
 /**
  *
@@ -107,8 +108,9 @@ public class PageLogin extends javax.swing.JPanel {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
 
-         PublicEvent.getInstance().getEventLogin().login();
-        
+         PublicEvent.getInstance().getEventLogin().login(new Model_Login(txtUser.getText(), String.valueOf(txtPassword.getPassword())));
+        System.out.println(txtUser.getText());
+        System.out.println(String.valueOf(txtPassword.getPassword()));
   
          
     }//GEN-LAST:event_btnLoginActionPerformed
