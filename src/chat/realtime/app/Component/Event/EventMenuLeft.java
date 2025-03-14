@@ -9,8 +9,11 @@ import java.util.List;
  * @enterprise FSTailSolutioN
  */
 public interface EventMenuLeft {
-    
+
     public void newUser(List<Model_User_Account> users);
-    
+
+    public void userConnect(int id);
+
+    public void userDisconect(int id);
 
 }

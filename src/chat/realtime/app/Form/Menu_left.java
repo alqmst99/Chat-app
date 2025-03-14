@@ -5,6 +5,7 @@ import chat.realtime.app.Component.Event.PublicEvent;
 import chat.realtime.app.Component.ItemPeople;
 import chat.realtime.app.Main.Model.Model_User_Account;
 import chat.realtime.app.Swing.ScrollBar;
+import java.awt.Component;
 import java.util.ArrayList;
 import java.util.List;
 import net.miginfocom.swing.MigLayout;
@@ -15,10 +16,8 @@ import net.miginfocom.swing.MigLayout;
  */
 public class Menu_left extends javax.swing.JPanel {
 
-    
     private List<Model_User_Account> userAccount;
-    
-    
+
     /**
      * Creates new form Menu_left
      */
@@ -31,25 +30,68 @@ public class Menu_left extends javax.swing.JPanel {
     private void init() {
         sp.setVerticalScrollBar(new ScrollBar());
         ListMenu.setLayout(new MigLayout("fillx", "0[]0", "0[]0"));
-        userAccount= new ArrayList<>();
+        userAccount = new ArrayList<>();
         PublicEvent.getInstance().addEventLeft(new EventMenuLeft() {
             @Override
             public void newUser(List<Model_User_Account> users) {
-               for(Model_User_Account d : users){
-                   userAccount.add(d);
-                   ListMenu.add(new ItemPeople(d.getUserName()), "wrap");
-                   System.out.print(d.getUserName());
-               }
+                for (Model_User_Account d : users) {
+                    userAccount.add(d);
+                    ListMenu.add(new ItemPeople(d), "wrap");
+                    System.out.print(d.getUserName());
+                }
             }
+
+            @Override
+            public void userConnect(int id) {
+                for (Model_User_Account u : userAccount) {
+                    if (u.getId() == id) {
+                        u.setStatus(true);
+                        break;
+                    }
+
+                }
+                if (menuMessage.isSelected()) {
+                    for (Component cm : ListMenu.getComponents()) {
+                        ItemPeople item = (ItemPeople) cm;
+                        if (item.getUser().getId()== id)
+                         {
+                            item.updateStatus();
+                            break;
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void userDisconect(int id) {
+  for (Model_User_Account u : userAccount) {
+                    if (u.getId() == id) {
+                        u.setStatus(false);
+                        break;
+                    }
+
+                }
+                if (menuMessage.isSelected()) {
+                    for (Component cm : ListMenu.getComponents()) {
+                        ItemPeople item = (ItemPeople) cm;
+                        if (item.getUser().getId()== id)
+                         {
+                            item.updateStatus();
+                            break;
+                        }
+                    }
+                }
+            }
+
         });
         showMessage();
     }
 
     private void showMessage() {
-       ListMenu.removeAll();
+        ListMenu.removeAll();
         //Test data
         for (Model_User_Account d : userAccount) {
-            ListMenu.add(new ItemPeople(d.getUserName()), "wrap");
+            ListMenu.add(new ItemPeople(null), "wrap");
             System.out.println(d.getUserName());
         }
         refreshMenuList();
@@ -59,7 +101,7 @@ public class Menu_left extends javax.swing.JPanel {
         ListMenu.removeAll();
         //Test data
         for (int i = 0; i < 10; i++) {
-            ListMenu.add(new ItemPeople("group conversation " + i), "wrap");
+            ListMenu.add(new ItemPeople(null), "wrap");
         }
         refreshMenuList();
     }
@@ -68,7 +110,7 @@ public class Menu_left extends javax.swing.JPanel {
         ListMenu.removeAll();
         //Test data
         for (int i = 0; i < 5; i++) {
-            ListMenu.add(new ItemPeople("message email number " + i), "wrap");
+            ListMenu.add(new ItemPeople(null), "wrap");
         }
         refreshMenuList();
     }
@@ -168,9 +210,8 @@ public class Menu_left extends javax.swing.JPanel {
     private void menuMessageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuMessageActionPerformed
 
         //change iconSimple to IconSelected
-        
         if (!menuMessage.isSelected()) {
-     
+
             menuMessage.setSelected(true);
             menuGroup.setSelected(false);
             menuBox.setSelected(false);

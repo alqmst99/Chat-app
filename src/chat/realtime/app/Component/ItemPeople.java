@@ -1,6 +1,8 @@
 
 package chat.realtime.app.Component;
 
+import chat.realtime.app.Main.Model.Model_User_Account;
+import chat.realtime.app.Swing.ActiveStatus;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -12,17 +14,27 @@ import java.awt.event.MouseListener;
  */
 public class ItemPeople extends javax.swing.JPanel {
 
-    /**
-     * Creates new form ItemPeople
-     * @param name
-     */
-    public ItemPeople(String name) {
+    public ActiveStatus getActiveStatus() {
+        return activeStatus;
+    }
+    
+    private Model_User_Account user;
+    
+    public final Model_User_Account getUser() {
+        return user;
+    }
+    
+    public ItemPeople(Model_User_Account user) {
+        this.user= user;
         initComponents();
-        lbName.setText(name);
+        lbName.setText(user.getUserName());
+        activeStatus.setActive(user.isStatus());
         init();
     }
 
-    
+    public void updateStatus (){
+        activeStatus.setActive(user.isStatus());
+    }
     
     private void init(){
         //mouse over a people component effect, change background color when hover mouse in the component Swing
@@ -45,6 +57,8 @@ public class ItemPeople extends javax.swing.JPanel {
 
         imageAvatar1 = new chat.realtime.app.Swing.ImageAvatar();
         lbName = new javax.swing.JLabel();
+        lbStatus = new javax.swing.JLabel();
+        activeStatus = new chat.realtime.app.Swing.ActiveStatus();
 
         setBackground(new java.awt.Color(242, 242, 242));
         setPreferredSize(new java.awt.Dimension(200, 50));
@@ -56,6 +70,13 @@ public class ItemPeople extends javax.swing.JPanel {
         lbName.setForeground(new java.awt.Color(0, 0, 0));
         lbName.setText("Name");
 
+        lbStatus.setBackground(new java.awt.Color(0, 0, 0));
+        lbStatus.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
+        lbStatus.setForeground(new java.awt.Color(117, 117, 117));
+        lbStatus.setText("Name");
+
+        activeStatus.setActive(true);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -63,7 +84,13 @@ public class ItemPeople extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(imageAvatar1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
-                .addComponent(lbName, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbName, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(activeStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -71,14 +98,22 @@ public class ItemPeople extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(2, 2, 2)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(imageAvatar1, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
-                    .addComponent(lbName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(imageAvatar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbName, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(2, 2, 2)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lbStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(activeStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(3, 3, 3))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private chat.realtime.app.Swing.ActiveStatus activeStatus;
     private chat.realtime.app.Swing.ImageAvatar imageAvatar1;
     private javax.swing.JLabel lbName;
+    private javax.swing.JLabel lbStatus;
     // End of variables declaration//GEN-END:variables
 }

@@ -58,6 +58,21 @@ public class Service {
                      
                   }
               });
+              client.on("user_status", new Emitter.Listener() {
+                  @Override
+                  public void call(Object... os) {
+
+                      int userId=(Integer) os[0] ;
+                      boolean status= (boolean) os[1];
+                      if(status){
+                          //connect
+                          PublicEvent.getInstance().getEventLeft().userConnect(userId);
+                      } else{
+                          //disconect
+                          PublicEvent.getInstance().getEventLeft().userDisconect(userId);
+                      }
+                  }
+              });
             client.open();
      
         } catch (URISyntaxException e) {
