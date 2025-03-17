@@ -1,12 +1,12 @@
 
 package chat.realtime.app.Component;
 
+import chat.realtime.app.Component.Event.PublicEvent;
 import chat.realtime.app.Main.Model.Model_User_Account;
 import chat.realtime.app.Swing.ActiveStatus;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 /**
  *
@@ -18,6 +18,8 @@ public class ItemPeople extends javax.swing.JPanel {
         return activeStatus;
     }
     
+    
+    private boolean mouseOver;
     private Model_User_Account user;
     
     public final Model_User_Account getUser() {
@@ -42,12 +44,27 @@ public class ItemPeople extends javax.swing.JPanel {
             @Override
             public void mouseEntered(MouseEvent me){
                 setBackground(new Color(230,230,230));
+                mouseOver= true;
             }
             
             @Override
             public void mouseExited(MouseEvent me){
                 setBackground(new Color(242,242,242));
+                mouseOver= false;
             }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                
+                if(mouseOver){
+                    PublicEvent.getInstance().getEventMain().selectUser(user);
+                }
+                
+            }
+            
+            
+            
+            
         });
     }
     

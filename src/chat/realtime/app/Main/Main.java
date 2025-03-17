@@ -3,6 +3,7 @@ package chat.realtime.app.Main;
 import chat.realtime.app.Component.Event.EventImageView;
 import chat.realtime.app.Component.Event.EventMain;
 import chat.realtime.app.Component.Event.PublicEvent;
+import chat.realtime.app.Main.Model.Model_User_Account;
 import chat.realtime.app.Swing.ComponentResizer;
 import com.formdev.flatlaf.intellijthemes.FlatArcIJTheme;
 import java.awt.Dimension;
@@ -62,6 +63,19 @@ public class Main extends javax.swing.JFrame {
                 home.setVisible(true);
                 login.setVisible(false);
                 Service.getInstance().getClient().emit("list_user", Service.getInstance().getUser().getId());
+            }
+
+            @Override
+            public void selectUser(Model_User_Account user) {
+                home.setUser(user);
+                
+            }
+
+            @Override
+            public void updateUser(Model_User_Account user) {
+                
+                home.updateUser(user);
+                
             }
         });
 

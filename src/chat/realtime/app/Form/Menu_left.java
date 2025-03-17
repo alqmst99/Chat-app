@@ -46,6 +46,7 @@ public class Menu_left extends javax.swing.JPanel {
                 for (Model_User_Account u : userAccount) {
                     if (u.getId() == id) {
                         u.setStatus(true);
+                        PublicEvent.getInstance().getEventMain().updateUser(u);
                         break;
                     }
 
@@ -67,6 +68,7 @@ public class Menu_left extends javax.swing.JPanel {
   for (Model_User_Account u : userAccount) {
                     if (u.getId() == id) {
                         u.setStatus(false);
+                        PublicEvent.getInstance().getEventMain().updateUser(u);
                         break;
                     }
 
@@ -194,7 +196,7 @@ public class Menu_left extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Menu)
+            .addComponent(Menu, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
             .addComponent(sp)
         );
         layout.setVerticalGroup(

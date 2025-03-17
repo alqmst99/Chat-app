@@ -1,6 +1,7 @@
 package chat.realtime.app.Component;
 
 import chat.realtime.app.Component.Event.PublicEvent;
+import chat.realtime.app.Main.Model.Model_User_Account;
 import chat.realtime.app.Swing.JIMSendTextPane;
 import chat.realtime.app.Swing.ScrollBar;
 import java.awt.Color;
@@ -24,6 +25,19 @@ import net.miginfocom.swing.MigLayout;
  */
 public class ChatBottom extends javax.swing.JPanel {
 
+    private Model_User_Account user;
+    
+    //getters and setters
+
+    public Model_User_Account getUser() {
+        return user;
+    }
+
+    public void setUser(Model_User_Account user) {
+        this.user = user;
+    }
+    
+    
     public ChatBottom() {
         initComponents();
         init();
