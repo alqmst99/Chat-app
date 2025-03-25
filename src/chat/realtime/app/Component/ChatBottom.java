@@ -1,7 +1,9 @@
 package chat.realtime.app.Component;
 
 import chat.realtime.app.Component.Event.PublicEvent;
+import chat.realtime.app.Main.Model.Model_Send_Message;
 import chat.realtime.app.Main.Model.Model_User_Account;
+import chat.realtime.app.Service.Service;
 import chat.realtime.app.Swing.JIMSendTextPane;
 import chat.realtime.app.Swing.ScrollBar;
 import java.awt.Color;
@@ -85,7 +87,9 @@ public class ChatBottom extends javax.swing.JPanel {
                 String text = txt.getText().trim();
                 if (!text.equals("")) {
                     //add chat item
-                    PublicEvent.getInstance().getEventChat().senMessage(text);
+                    Model_Send_Message message= new Model_Send_Message(Service.getInstance().getUser().getId(), user.getId(), text);
+                    send(message);
+                    PublicEvent.getInstance().getEventChat().sendMessage(message);
                     txt.setText("");
                     txt.grabFocus();
                     refresh();
@@ -99,6 +103,10 @@ public class ChatBottom extends javax.swing.JPanel {
         panel.add(btn);
         add(panel);
 
+    }
+    
+    private void send(Model_Send_Message data){
+      Service.getInstance().getClient().emit("send_to_user", data.toJSONObject());
     }
 
     private void refresh() {

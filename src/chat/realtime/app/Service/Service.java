@@ -1,6 +1,7 @@
 package chat.realtime.app.Service;
 
 import chat.realtime.app.Component.Event.PublicEvent;
+import chat.realtime.app.Main.Model.Model_Recive_Message;
 import chat.realtime.app.Main.Model.Model_User_Account;
 import io.socket.client.IO;
 import io.socket.client.Socket;
@@ -71,6 +72,15 @@ public class Service {
                           //disconect
                           PublicEvent.getInstance().getEventLeft().userDisconect(userId);
                       }
+                  }
+              });
+              client.on("recive_ms", new Emitter.Listener() {
+                  @Override
+                  public void call(Object... os) {
+                      
+                      Model_Recive_Message message = new Model_Recive_Message(os[0]);
+                      PublicEvent.getInstance().getEventChat().reciveMessage(message);
+                      
                   }
               });
             client.open();

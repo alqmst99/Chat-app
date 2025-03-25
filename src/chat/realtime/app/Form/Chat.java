@@ -6,6 +6,8 @@ import chat.realtime.app.Component.ChatBottom;
 import chat.realtime.app.Component.ChatTitle;
 import chat.realtime.app.Component.Event.EventChat;
 import chat.realtime.app.Component.Event.PublicEvent;
+import chat.realtime.app.Main.Model.Model_Recive_Message;
+import chat.realtime.app.Main.Model.Model_Send_Message;
 import chat.realtime.app.Main.Model.Model_User_Account;
 import net.miginfocom.swing.MigLayout;
 
@@ -31,9 +33,23 @@ public class Chat extends javax.swing.JPanel {
           chatBody= new ChatBody();
          chatBottom = new ChatBottom();
         PublicEvent.getInstance().addEventChat(new EventChat() {
+          
+
             @Override
-            public void senMessage(String txt) {
-            chatBody.addItemRight(txt);
+            public void sendMessage(Model_Send_Message data) {
+                
+                chatBody.addItemRight(data);
+                
+                
+            }
+
+            @Override
+            public void reciveMessage(Model_Recive_Message data) {
+                if(chatTitle.getUser().getId()==data.getFromUserId()){
+            
+                chatBody.addItemLeft(data);
+                
+            }
             }
         });
         add(chatTitle, "wrap");
@@ -45,6 +61,7 @@ public class Chat extends javax.swing.JPanel {
      public void setUser(Model_User_Account user){
         chatTitle.setUserName(user);
         chatBottom.setUser(user);
+        chatBody.clearChat();
     }
     
      public void updateUser(Model_User_Account user){

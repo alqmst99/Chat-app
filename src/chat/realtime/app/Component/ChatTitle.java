@@ -10,6 +10,14 @@ import java.awt.Color;
  */
 public class ChatTitle extends javax.swing.JPanel {
 
+    public Model_User_Account getUser() {
+        return user;
+    }
+
+    public void setUser(Model_User_Account user) {
+        this.user = user;
+    }
+
   
     private Model_User_Account user;
     
