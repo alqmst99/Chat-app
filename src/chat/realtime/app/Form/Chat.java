@@ -1,4 +1,3 @@
-
 package chat.realtime.app.Form;
 
 import chat.realtime.app.Component.ChatBody;
@@ -20,54 +19,50 @@ public class Chat extends javax.swing.JPanel {
     private ChatTitle chatTitle;
     private ChatBody chatBody;
     private ChatBottom chatBottom;
-    
-    
+
     public Chat() {
         initComponents();
         init();
     }
 
-    private void init(){
-        setLayout(new MigLayout("fillx", "0[fill]0","0[]0[100%, bottom]0[shrink 0]0"));
-         chatTitle= new ChatTitle();
-          chatBody= new ChatBody();
-         chatBottom = new ChatBottom();
+    private void init() {
+        setLayout(new MigLayout("fillx", "0[fill]0", "0[]0[100%, fill]0[shrink 0]0"));
+        chatTitle = new ChatTitle();
+        chatBody = new ChatBody();
+        chatBottom = new ChatBottom();
         PublicEvent.getInstance().addEventChat(new EventChat() {
-          
 
             @Override
             public void sendMessage(Model_Send_Message data) {
-                
+
                 chatBody.addItemRight(data);
-                
-                
+
             }
 
             @Override
             public void reciveMessage(Model_Recive_Message data) {
-                if(chatTitle.getUser().getId()==data.getFromUserId()){
-            
-                chatBody.addItemLeft(data);
-                
-            }
+                if (chatTitle.getUser().getId() == data.getFromUserId()) {
+                    chatBody.addItemLeft(data);
+                }
+
             }
         });
         add(chatTitle, "wrap");
         add(chatBody, "wrap");
-        add(chatBottom,"h ::50%");
-      
+        add(chatBottom, "h ::50%");
+
     }
 
-     public void setUser(Model_User_Account user){
+    public void setUser(Model_User_Account user) {
         chatTitle.setUserName(user);
         chatBottom.setUser(user);
         chatBody.clearChat();
     }
-    
-     public void updateUser(Model_User_Account user){
-         chatTitle.updateUser(user);
-     }
-    
+
+    public void updateUser(Model_User_Account user) {
+        chatTitle.updateUser(user);
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
