@@ -1,6 +1,6 @@
 package testing;
 
-import chat.realtime.app.Swing.BlurHash.BlurHash;
+import chat.realtime.Swing.BlurHash.BlurHash;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
