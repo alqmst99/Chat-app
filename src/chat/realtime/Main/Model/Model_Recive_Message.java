@@ -1,7 +1,6 @@
-
-
 package chat.realtime.Main.Model;
 
+import app.MessageType;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -11,47 +10,48 @@ import org.json.JSONObject;
  * @Enterprise: FSTailSolution
  */
 public class Model_Recive_Message {
-    
-    private int fromUserId;
-  
-    private String text;
-    
-    //constructor
 
+    private int fromUserId;
+
+    private String text;
+
+    private MessageType messageType;
+
+    //constructor
     public Model_Recive_Message(Object json) {
-        JSONObject obj= (JSONObject) json;
+        JSONObject obj = (JSONObject) json;
         try {
-            fromUserId= obj.getInt("fromUserId");
-            text= obj.getString("text");
+            //transfor recive, type mesage in value
+            messageType = MessageType.toMessageType(obj.getInt("messageType"));
+            fromUserId = obj.getInt("fromUserId");
+            text = obj.getString("text");
         } catch (JSONException e) {
-     System.err.println(e);
+            System.err.println(e);
         }
     }
 
-    public Model_Recive_Message(int fromUserId, String text) {
+    public Model_Recive_Message(int fromUserId, String text, MessageType messageType) {
         this.fromUserId = fromUserId;
         this.text = text;
+        this.messageType = messageType;
     }
 
-  
-    
     //JSONobjetc
-    
-    public JSONObject toJSONObject(){
+    public JSONObject toJSONObject() {
         try {
-            JSONObject json= new JSONObject();
+            JSONObject json = new JSONObject();
+            //upadte recive type message 
+            json.put("messageType", messageType.getValue());
             json.put("fromUserId", fromUserId);
             json.put("text", text);
             return json;
-               
-            
+
         } catch (Exception e) {
-        return null;
+            return null;
         }
     }
-    
-    //getters and setters
 
+    //getters and setters
     public int getFromUserId() {
         return fromUserId;
     }
@@ -68,7 +68,12 @@ public class Model_Recive_Message {
         this.text = text;
     }
 
-  
-    
+    public MessageType getMessageType() {
+        return messageType;
+    }
+
+    public void setMessageType(MessageType messageType) {
+        this.messageType = messageType;
+    }
 
 }

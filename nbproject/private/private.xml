@@ -3,7 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Nahue/OneDrive/Escritorio/develops/Java-App/Chat-Realtime-app/src/app/MessageType.java</file>
+            <file>file:/C:/Users/Nahue/OneDrive/Escritorio/develops/Java-App/Chat-Realtime-app/src/chat/realtime/Component/ChatRight.java</file>
+            <file>file:/C:/Users/Nahue/OneDrive/Escritorio/develops/Java-App/Chat-Realtime-app/src/chat/realtime/Component/ChatLeft.java</file>
+            <file>file:/C:/Users/Nahue/OneDrive/Escritorio/develops/Java-App/Chat-Realtime-app/src/chat/realtime/Component/PanelMore.java</file>
+            <file>file:/C:/Users/Nahue/OneDrive/Escritorio/develops/Java-App/Chat-Realtime-app/src/chat/realtime/Component/ChatBody.java</file>
+            <file>file:/C:/Users/Nahue/OneDrive/Escritorio/develops/Java-App/Chat-Realtime-app/src/chat/realtime/Component/ChatItem.java</file>
+            <file>file:/C:/Users/Nahue/OneDrive/Escritorio/develops/Java-App/Chat-Realtime-app/src/chat/realtime/Form/Chat.java</file>
         </group>
     </open-files>
 </project-private>

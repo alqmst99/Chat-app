@@ -1,8 +1,10 @@
 package chat.realtime.Component;
 
+import app.MessageType;
 import chat.realtime.Main.Model.Model_Recive_Message;
 import chat.realtime.Main.Model.Model_Send_Message;
 import chat.realtime.Swing.ScrollBar;
+import chat.realtime.emogi.Emogi;
 import java.awt.Adjustable;
 import java.awt.Color;
 import java.awt.event.AdjustmentEvent;
@@ -53,10 +55,17 @@ public class ChatBody extends javax.swing.JPanel {
 
     //add message text field 
     public void addItemLeft(Model_Recive_Message data) {
-        ChatLeftWhitProfile item = new ChatLeftWhitProfile();
-        item.setText(data.getText());
-        item.setTime();
-        Body.add(item, "wrap, al left, w 100::80%");//w 100:80% ajust size in the content 
+        if (data.getMessageType() == MessageType.TEXT) {
+            ChatLeftWhitProfile item = new ChatLeftWhitProfile();
+            item.setText(data.getText());
+            item.setTime();
+            Body.add(item, "wrap, al left, w 100::80%");//w 100:80% ajust size in the content 
+        } else {
+            ChatLeft item = new ChatLeft();
+            item.setEmoji(Emogi.getInsance().getEmoji(Integer.valueOf(data.getText())).getIcon());
+            item.setTime();
+            Body.add(item, "wrap, al left, w 100::80%");//w 100:80% ajust size in the content 
+        }
         repaint();
         revalidate();
     }
@@ -86,10 +95,17 @@ public class ChatBody extends javax.swing.JPanel {
     }
 
     public void addItemRight(Model_Send_Message data) {
-        ChatRight item = new ChatRight();
-        item.setText(data.getText());
-        item.setTime();
+        if (data.getMessageType() == MessageType.TEXT) {
+            ChatRight item = new ChatRight();
+            item.setText(data.getText());
+            Body.add(item, "wrap, al right, w 100::80%");
+            item.setTime();
+        } else if (data.getMessageType() == MessageType.EMOJI){
+              ChatRight item = new ChatRight();
+        item.setEmoji(Emogi.getInsance().getEmoji(Integer.valueOf(data.getText())).getIcon());
         Body.add(item, "wrap, al right, w 100::80%");
+        item.setTime();
+        }
         repaint();
         revalidate();
         scrollToBottom();
@@ -159,15 +175,14 @@ public class ChatBody extends javax.swing.JPanel {
             .addComponent(sp)
         );
     }// </editor-fold>//GEN-END:initComponents
- 
-public void clearChat(){
-    Body.removeAll();
-    repaint();
-    revalidate();
-}
+
+    public void clearChat() {
+        Body.removeAll();
+        repaint();
+        revalidate();
+    }
 
 //Fill to the end Scrollbar after send message
-
     private void scrollToBottom() {
         JScrollBar verticalBar = sp.getVerticalScrollBar();
         AdjustmentListener downScroller = new AdjustmentListener() {

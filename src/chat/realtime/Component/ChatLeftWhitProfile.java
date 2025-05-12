@@ -65,7 +65,7 @@ public class ChatLeftWhitProfile extends javax.swing.JLayeredPane {
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.LINE_AXIS));
 
         IaImage.setBorderSize(0);
-        IaImage.setImage(new javax.swing.ImageIcon(getClass().getResource("/chat/realtime/app/Icon/icon.png"))); // NOI18N
+        IaImage.setImage(new javax.swing.ImageIcon(getClass().getResource("/chat/realtime/Icon/profile.png"))); // NOI18N
         IaImage.setMaximumSize(new java.awt.Dimension(31, 31));
         IaImage.setMinimumSize(new java.awt.Dimension(31, 31));
 

@@ -41,6 +41,12 @@ public class ChatRight extends javax.swing.JLayeredPane {
          public void setFile(String fileName, String size){
         txt.setFile(fileName, size);
     }
+         
+   //Emoji
+         public void setEmoji(Icon icon){
+             txt.hideText();
+             txt.setEmoji(true, icon);
+         } 
    
    public void setTime(){
        txt.setTime("18:00 PM");

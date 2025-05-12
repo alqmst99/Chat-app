@@ -1,8 +1,13 @@
 package chat.realtime.Component;
 
+import app.MessageType;
+import chat.realtime.Component.Event.PublicEvent;
 import chat.realtime.emogi.Emogi;
 import chat.realtime.emogi.ModelEmoji;
 import chat.realtime.Main.Main;
+import chat.realtime.Main.Model.Model_Send_Message;
+import chat.realtime.Main.Model.Model_User_Account;
+import chat.realtime.Service.Service;
 import chat.realtime.Swing.ScrollBar;
 import chat.realtime.Swing.WrapLayout;
 import java.awt.Cursor;
@@ -20,36 +25,55 @@ import javax.swing.border.EmptyBorder;
 import net.miginfocom.swing.MigLayout;
 
 public class PanelMore extends javax.swing.JPanel {
+
+    /**
+     * @return the user
+     */
+    public Model_User_Account getUser() {
+        return user;
+    }
+
+    /**
+     * @param user the user to set
+     */
+    public void setUser(Model_User_Account user) {
+        this.user = user;
+   
+    }
+
+    
+    
+    private Model_User_Account user;
     
     public PanelMore() {
         initComponents();
         init();
-    } 
-    
+    }
+
     private void init() {
-           setLayout(new MigLayout("fillx"));
-    
-    panelHeader = new JPanel();
-    panelHeader.setLayout(new BoxLayout(panelHeader, BoxLayout.LINE_AXIS));//panel box header disposition
-    panelHeader.add(getButtonFile());
-    panelHeader.add(getEmojiStyle1());
-    panelHeader.add(getEmojiStyle2());
-    add(panelHeader, "w 100%, h 30!, wrap");//use Wrap layout
+        setLayout(new MigLayout("fillx"));
 
-    panelDetail = new JPanel();
-    panelDetail.setLayout(new WrapLayout(WrapLayout.LEFT)); // WrapLayout permite emojis en líneas
-    
-    JScrollPane ch = new JScrollPane(panelDetail); // ← AQUÍ está el fix: panelDetail dentro del scroll
-    ch.setBorder(null);
-    ch.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-    ch.setVerticalScrollBar(new ScrollBar());
+        panelHeader = new JPanel();
+        panelHeader.setLayout(new BoxLayout(panelHeader, BoxLayout.LINE_AXIS));//panel box header disposition
+        panelHeader.add(getButtonFile());
+        panelHeader.add(getEmojiStyle1());
+        panelHeader.add(getEmojiStyle2());
+        add(panelHeader, "w 100%, h 30!, wrap");//use Wrap layout
 
-    add(ch, "w 100%, h 100%");
+        panelDetail = new JPanel();
+        panelDetail.setLayout(new WrapLayout(WrapLayout.LEFT)); // WrapLayout permite emojis en líneas
+
+        JScrollPane ch = new JScrollPane(panelDetail); // ← AQUÍ está el fix: panelDetail dentro del scroll
+        ch.setBorder(null);
+        ch.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        ch.setVerticalScrollBar(new ScrollBar());
+
+        add(ch, "w 100%, h 100%");
     }
 
     //Upload Image Event
     private JButton getButtonFile() {
-        
+
         OptionButton btn = new OptionButton();
         btn.setIcon(new ImageIcon(getClass().getResource("/chat/realtime/Icon/link.png")));
         btn.addActionListener(new ActionListener() {
@@ -61,7 +85,7 @@ public class PanelMore extends javax.swing.JPanel {
 
             }
         });
-        
+
         return btn;
     }
 
@@ -77,26 +101,18 @@ public class PanelMore extends javax.swing.JPanel {
 
                 //itarition of buble for, map all emogis 1-20
                 for (ModelEmoji d : Emogi.getInsance().getStyle1()) {
-                    
-                    JButton c = new JButton();
-                    c.setIcon(d.getIcon());
-                    c.setName(d.getId() + "");
-                    c.setBorder(new EmptyBorder(3, 3, 3, 3));
-                    c.setCursor(new Cursor(Cursor.HAND_CURSOR));
-                     c.setContentAreaFilled(false);
-                    
-                    panelDetail.add(c);
-                   
+                    panelDetail.add(getButton(d));
+
                 }
-                
+
                 panelDetail.repaint();
                 panelDetail.revalidate();
             }
         });
-        
+
         return btn;
     }
-    
+
     private JButton getEmojiStyle2() {
         //test
         OptionButton btn = new OptionButton();
@@ -108,23 +124,40 @@ public class PanelMore extends javax.swing.JPanel {
 
                 //itarition of buble for, map all emogis 21-40
                 for (ModelEmoji d : Emogi.getInsance().getStyle2()) {
-                    
-                    JButton c = new JButton();
-                    c.setIcon(d.getIcon());
-                    c.setName(d.getId() + "");
-                    c.setBorder(new EmptyBorder(3, 3, 3, 3));
-                    c.setCursor(new Cursor(Cursor.HAND_CURSOR));
-                     c.setContentAreaFilled(false);
-                    
-                    panelDetail.add(c);
-                   
+                    panelDetail.add(getButton(d));
+
                 }
-                
+
                 panelDetail.repaint();
                 panelDetail.revalidate();
             }
         });
         return btn;
+    }
+
+    private JButton getButton(ModelEmoji d) {
+        
+        JButton c = new JButton();
+        c.setIcon(d.getIcon());
+        c.setName(d.getId() + "");
+        c.setBorder(new EmptyBorder(3, 3, 3, 3));
+        c.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        c.setContentAreaFilled(false);
+        c.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            
+                Model_Send_Message message = new Model_Send_Message(MessageType.EMOJI, Service.getInstance().getUser().getId(), user.getId() , d.getId() + "");
+                sendMesage(message);
+                PublicEvent.getInstance().getEventChat().sendMessage(message);
+            }
+        });
+        return c;
+
+    }
+
+    private void sendMesage(Model_Send_Message data){
+        Service.getInstance().getClient().emit("send_to_user", data.toJSONObject());
     }
     
     @SuppressWarnings("unchecked")
@@ -144,7 +177,7 @@ public class PanelMore extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 private JPanel panelHeader;
-private JPanel panelDetail;
+    private JPanel panelDetail;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables

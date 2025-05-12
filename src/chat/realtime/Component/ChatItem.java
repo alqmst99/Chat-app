@@ -82,15 +82,15 @@ public class ChatItem extends javax.swing.JLayeredPane {
     }
 
     public void setImage(boolean right, Icon... image) {
-if(image.length >0 ){
+        if (image.length > 0) {
             JLayeredPane layer = new JLayeredPane();
-        layer.setLayout(new FlowLayout(right ? FlowLayout.RIGHT : FlowLayout.LEFT));
-        layer.setBorder(new EmptyBorder(0, 5, 5, 5));
-        ChatImage chatImage = new ChatImage(right);
-        chatImage.addImage(image);
-        layer.add(chatImage);
-        add(layer);
-}
+            layer.setLayout(new FlowLayout(right ? FlowLayout.RIGHT : FlowLayout.LEFT));
+            layer.setBorder(new EmptyBorder(0, 5, 5, 5));
+            ChatImage chatImage = new ChatImage(right);
+            chatImage.addImage(image);
+            layer.add(chatImage);
+            add(layer);
+        }
 
     }
 
@@ -104,16 +104,25 @@ if(image.length >0 ){
         add(layer);
 
     }
-    
-       public void setFile(String fileName, String size) {
+
+    public void setFile(String fileName, String size) {
         JLayeredPane layer = new JLayeredPane();
-        layer.setLayout(new FlowLayout( FlowLayout.LEFT));
+        layer.setLayout(new FlowLayout(FlowLayout.LEFT));
         layer.setBorder(new EmptyBorder(0, 5, 0, 5));
-       ChatFile chatFile= new ChatFile();
+        ChatFile chatFile = new ChatFile();
         chatFile.setFile(fileName, size);
         layer.add(chatFile);
         add(layer);
 
+    }
+
+    public void setEmoji(boolean right, Icon icon) {
+        JLayeredPane layer = new JLayeredPane();
+        layer.setLayout(new FlowLayout(right ? FlowLayout.RIGHT : FlowLayout.LEFT));
+        layer.setBorder(new EmptyBorder(0, 5, 5, 5));
+        layer.add(new JLabel(icon));
+        add(layer);
+        setBackground(null);
     }
 
     public void hideText() {
@@ -136,9 +145,11 @@ if(image.length >0 ){
     @Override
     protected void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g2.setColor(getBackground());
-        g2.fillRoundRect(0, 0, getWidth(), getHeight(), 15, 15);
+        if (getBackground() != null) {
+            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            g2.setColor(getBackground());
+            g2.fillRoundRect(0, 0, getWidth(), getHeight(), 15, 15);
+        }
         super.paintComponent(g);
     }
 

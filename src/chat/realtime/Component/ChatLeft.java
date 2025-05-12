@@ -1,4 +1,3 @@
-
 package chat.realtime.Component;
 
 import java.awt.Color;
@@ -15,38 +14,42 @@ public class ChatLeft extends javax.swing.JLayeredPane {
      */
     public ChatLeft() {
         initComponents();
-        txt.setBackground(new Color(200,200,200));
+        txt.setBackground(new Color(200, 200, 200));
     }
 
-      
-   public void setText(String text){
-      if(text.equals("")){
-          txt.hideText();
-      }else{
-          txt.setTxt(text);
-      }
-   }
-   
- //image chat 
-   public void setImage(Icon... image){
-       txt.setImage(false, image);
-   }
-   
-   //image charge blurhash
-    public void setImage(String... image){
-       txt.setImage(false, image);
-   }
-    
-//File
-        public void setFile(String fileName, String size){
+    public void setText(String text) {
+        if (text.equals("")) {
+            txt.hideText();
+        } else {
+            txt.setTxt(text);
+        }
+    }
+
+    //image chat 
+    public void setImage(Icon... image) {
+        txt.setImage(false, image);
+    }
+
+    //image charge blurhash
+    public void setImage(String... image) {
+        txt.setImage(false, image);
+    }
+
+    //File
+    public void setFile(String fileName, String size) {
         txt.setFile(fileName, size);
     }
-   
-   public void setTime(){
-       txt.setTime("18:00 PM");
-   }
-   
-   
+
+    //Emoji
+    public void setEmoji(Icon icon) {
+        txt.hideText();
+        txt.setEmoji(false, icon);
+    }
+
+    public void setTime() {
+        txt.setTime("18:00 PM");
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -67,7 +70,6 @@ public class ChatLeft extends javax.swing.JLayeredPane {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private chat.realtime.Component.ChatItem txt;

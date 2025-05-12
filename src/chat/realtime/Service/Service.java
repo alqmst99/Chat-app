@@ -74,7 +74,7 @@ public class Service {
                       }
                   }
               });
-              client.on("recive_ms", new Emitter.Listener() {
+              client.on("receive_ms", new Emitter.Listener() {
                   @Override
                   public void call(Object... os) {
                       

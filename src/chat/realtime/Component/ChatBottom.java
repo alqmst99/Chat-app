@@ -1,5 +1,6 @@
 package chat.realtime.Component;
 
+import app.MessageType;
 import chat.realtime.Component.Event.PublicEvent;
 import chat.realtime.Main.Model.Model_Send_Message;
 import chat.realtime.Main.Model.Model_User_Account;
@@ -36,6 +37,7 @@ public class ChatBottom extends javax.swing.JPanel {
 
     public void setUser(Model_User_Account user) {
         this.user = user;
+        panelMore.setUser(user);
     }
 
     public ChatBottom() {
@@ -136,7 +138,7 @@ public class ChatBottom extends javax.swing.JPanel {
         String text = txt.getText().trim();
         if (!text.equals("")) {
             //add chat item
-            Model_Send_Message message = new Model_Send_Message(Service.getInstance().getUser().getId(), user.getId(), text);
+            Model_Send_Message message = new Model_Send_Message(MessageType.TEXT, Service.getInstance().getUser().getId(), user.getId(), text);
             send(message);
             PublicEvent.getInstance().getEventChat().sendMessage(message);
             txt.setText("");
